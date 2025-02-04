@@ -1,3 +1,5 @@
+import math
+
 from Bus import Bus
 from Bundle import Bundle
 from Geometry import Geometry
@@ -19,7 +21,9 @@ class TransmissionLine:
 
     def calculate_series_impedance(self):
         """Calculate the series impedance of the transmission line."""
-        return 0.01 * self.length  # PLACEHOLDER, FIX WHEN SUBCLASSES IMPLEMENTED
+        Ra = self.bundle.conductor.resistance/self.bundle.num_conductors * 1609
+        Xa = 377 * 2e-7 * math.log(self.geometry.DEQ / self.bundle.DSL) * 1609  # ohm/mile
+        return complex(Ra + Xa)
 
     def calculate_shunt_admittance(self):
         """Calculate the shunt admittance of the transmission line."""
