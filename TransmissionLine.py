@@ -30,11 +30,12 @@ class TransmissionLine:
         """Calculate the series impedance of the transmission line."""
         Ra = self.bundle.conductor.resistance/self.bundle.num_conductors * 1609 * self.length
         Xa = 377 * 2e-7 * math.log(self.geometry.DEQ / self.bundle.DSL) * 1609  * self.length # ohm
-        return complex(Ra + Xa)
+        return complex(Ra, Xa)
 
     def calculate_shunt_admittance(self):
         """Calculate the shunt admittance of the transmission line."""
         y = 377 * 1609 * 2 * math.pi * 8.854e-12 / math.log(self.geometry.DEQ / self.bundle.DSC) * self.length
+        return complex(0, y)
 
     def __str__(self):
         """Return a formatted string representing the transmission line object."""
