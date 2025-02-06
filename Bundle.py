@@ -13,7 +13,7 @@ class Bundle:
         self.calc_DSC()
 
     def calc_DSC(self):
-        #make sure rad is in feet
+        #make sure rad is in feet (divide by 2 to get radius, 12 to get feet)
         rad_ft=self.conductor.diam/24
 
         #Calculation of DSC changes for number of conductors.

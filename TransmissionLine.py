@@ -3,6 +3,13 @@ import math
 from Bus import Bus
 from Bundle import Bundle
 from Geometry import Geometry
+from Conductor import Conductor
+
+
+def get_base_values(vbase, sbase):
+    """return Zbase and Ybase values"""
+    return vbase**2/sbase, 1/(vbase**2/sbase)
+
 
 class TransmissionLine:
     def __init__(self, name: str, bus1: Bus, bus2: Bus, bundle: Bundle, geometry: Geometry, length: float):
@@ -17,27 +24,17 @@ class TransmissionLine:
         # Calculate series impedance and shunt admittance
         self.series_impedance = self.calculate_series_impedance()
         self.shunt_admittance = self.calculate_shunt_admittance()
-        self.yprim = self.calc_yprim()
+        # self.yprim = self.calc_yprim()
 
     def calculate_series_impedance(self):
         """Calculate the series impedance of the transmission line."""
-        Ra = self.bundle.conductor.resistance/self.bundle.num_conductors * 1609
-        Xa = 377 * 2e-7 * math.log(self.geometry.DEQ / self.bundle.DSL) * 1609  # ohm/mile
+        Ra = self.bundle.conductor.resistance/self.bundle.num_conductors * 1609 * self.length
+        Xa = 377 * 2e-7 * math.log(self.geometry.DEQ / self.bundle.DSL) * 1609  * self.length # ohm
         return complex(Ra + Xa)
 
     def calculate_shunt_admittance(self):
         """Calculate the shunt admittance of the transmission line."""
-        return 0.001 * self.length  # PLACEHOLDER, FIX WHEN SUBCLASSES IMPLEMENTED
-
-    def get_base_values(self, vbase, sbase):
-        """return Zbase and Ybase values"""
-        return vbase**2/sbase, 1/(vbase**2/sbase)
-
-    def calc_yprim(self):
-        """Compute the primitive admittance matrix."""
-        y_series = 1 / self.series_impedance if self.series_impedance != 0 else float('inf')
-        y_shunt = self.shunt_admittance
-        return [[y_series + y_shunt, -y_series], [-y_series, y_series + y_shunt]]
+        y = 377 * 1609 * 2 * math.pi * 8.854e-12 / math.log(self.geometry.DEQ / self.bundle.DSC) * self.length
 
     def __str__(self):
         """Return a formatted string representing the transmission line object."""
@@ -49,15 +46,33 @@ class TransmissionLine:
             f"Length: {self.length} km\n"
             f"Series Impedance: {self.series_impedance} Ω\n"
             f"Shunt Admittance: {self.shunt_admittance} S\n"
-            f"Y-Primitive Matrix: {self.yprim}"
+            # f"Y-Primitive Matrix: {self.yprim}"
         )
+
+"""
+TO BE IMPLEMENTED IN MILESTONE 3
+    def calc_yprim(self):
+        
+        y_series = 1 / self.series_impedance if self.series_impedance != 0 else float('inf')
+        y_shunt = self.shunt_admittance
+        return [[y_series + y_shunt, -y_series], [-y_series, y_series + y_shunt]]
+"""
+
 
 if __name__ == "__main__":
     """
     TransmissionLine Validation
     """
+
+    bus1 = Bus("Bus 1", 20)
+    bus2 = Bus("Bus 2", 230)
+
+    conductor1 = Conductor("Partridge", 0.642, 0.0217, 0.385, 460)
+    bundle1 = Bundle("Bundle 1", 3, 1.5, conductor1)
+    geometry1 = Geometry("Geometry1", 0, 0, 7, 0, 14, 0)
+
     line1 = TransmissionLine("Line 1", bus1, bus2, bundle1, geometry1, 10)
 
     print(line1)
 
-    print(line1.get_base_values(20,100))
+    print(get_base_values(20, 100))
