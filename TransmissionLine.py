@@ -6,9 +6,9 @@ from Geometry import Geometry
 from Conductor import Conductor
 
 
-def get_base_values(vbase, sbase):
-    """return Zbase and Ybase values"""
-    return vbase**2/sbase, 1/(vbase**2/sbase)
+def get_zbase(vbase, sbase):
+    """return Zbase"""
+    return vbase**2/sbase
 
 
 class TransmissionLine:
@@ -26,16 +26,19 @@ class TransmissionLine:
         self.shunt_admittance = self.calculate_shunt_admittance()
         # self.yprim = self.calc_yprim()
 
-    def calculate_series_impedance(self):
+    def calculate_series_impedance(self, zbase: float):
         """Calculate the series impedance of the transmission line."""
         Ra = self.bundle.conductor.resistance/self.bundle.num_conductors * 1609 * self.length
         Xa = 377 * 2e-7 * math.log(self.geometry.DEQ / self.bundle.DSL) * 1609  * self.length # ohm
-        return complex(Ra, Xa)
+        return complex(Ra, Xa)/zbase
 
-    def calculate_shunt_admittance(self):
+    def calculate_shunt_admittance(self, zbase: float):
         """Calculate the shunt admittance of the transmission line."""
         y = 377 * 1609 * 2 * math.pi * 8.854e-12 / math.log(self.geometry.DEQ / self.bundle.DSC) * self.length
-        return complex(0, y)
+        return complex(0, y) * zbase
+
+    def calc_yprim(self, y_series:float, y_shunt:float):
+        return [[y_series + y_shunt/2, -y_series],[-y_series, y_series + y_shunt/2]]
 
     def __str__(self):
         """Return a formatted string representing the transmission line object."""

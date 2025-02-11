@@ -16,19 +16,21 @@ class Transformer:
         self.admittance = 1 / self.impedance if self.impedance != 0 else float('inf')
         self.yprim = self.calc_yprim()
 
-    def calculate_impedance(self):
+    def calculate_impedance(self, mva_base: float = 100):
         """Calculate the impedance based on power rating and impedance percentage."""
-        base_impedance = (self.bus1.base_kv ** 2) / self.power_rating
-        z_pu = self.impedance_percent / 100
-        return z_pu * base_impedance
+        # Calculate Zbase for the transformer
+        z_pu_xfmr = self.impedance_percent / 100
+        # Change power base if needed
+        z_pu_sys = z_pu_xfmr * mva_base/self.power_rating
+        return z_pu_sys
 
     def calculate_admittance(self):
         """Calculate the admittance as the reciprocal of impedance."""
         return 1 / self.impedance if self.impedance != 0 else float('inf')
 
-    def calc_yprim(self):
+    def calc_yprim(self, mva_base:float):
         """Compute the primitive admittance matrix."""
-        y = self.calculate_admittance()
+        y = 1/self.calculate_impedance(mva_base)
         return [[y, -y], [-y, y]]
 
     def __str__(self):
