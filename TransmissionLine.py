@@ -21,22 +21,23 @@ class TransmissionLine:
         self.bundle = bundle
         self.geometry = geometry
         self.length = length
+        self.zbase = get_zbase(bus1.base_kv, 100)
 
         # Calculate series impedance and shunt admittance
         self.series_impedance = self.calculate_series_impedance()
         self.shunt_admittance = self.calculate_shunt_admittance()
-        # self.yprim = self.calc_yprim()
+        self.yprim = self.calc_yprim()
 
-    def calculate_series_impedance(self, zbase: float = 100):
+    def calculate_series_impedance(self):
         """Calculate the series impedance of the transmission line."""
         Ra = self.bundle.conductor.resistance/self.bundle.num_conductors * 1609 * self.length
         Xa = 377 * 2e-7 * math.log(self.geometry.DEQ / self.bundle.DSL) * 1609  * self.length # ohm
-        return complex(Ra, Xa)/zbase
+        return complex(Ra, Xa)
 
-    def calculate_shunt_admittance(self, zbase: float = 100):
+    def calculate_shunt_admittance(self):
         """Calculate the shunt admittance of the transmission line."""
         y = 377 * 1609 * 2 * math.pi * 8.854e-12 / math.log(self.geometry.DEQ / self.bundle.DSC) * self.length
-        return complex(0, y) * zbase
+        return complex(0, y)
 
 
     def __str__(self):
@@ -52,11 +53,12 @@ class TransmissionLine:
             # f"Y-Primitive Matrix: {self.yprim}"
         )
 
-
+    # primitive matrix: diagonals are admittance connected to node, off-diagonals are negative of admittance btw nodes
     def calc_yprim(self):
-        
-        y_series = 1 / self.series_impedance if self.series_impedance != 0 else float('inf')
-        y_shunt = self.shunt_admittance
+
+        # stored impedance and admittance are ohm values. Per-unitize here
+        y_series = 1 / self.series_impedance * self.zbase if self.series_impedance != 0 else float('inf')
+        y_shunt = self.shunt_admittance * self.zbase
         return [[y_series + y_shunt/2, -y_series], [-y_series, y_series + y_shunt/2]]
 
 
