@@ -1,4 +1,5 @@
 import math
+import pandas as pd
 
 from Bus import Bus
 from Bundle import Bundle
@@ -26,19 +27,17 @@ class TransmissionLine:
         self.shunt_admittance = self.calculate_shunt_admittance()
         # self.yprim = self.calc_yprim()
 
-    def calculate_series_impedance(self, zbase: float):
+    def calculate_series_impedance(self, zbase: float = 100):
         """Calculate the series impedance of the transmission line."""
         Ra = self.bundle.conductor.resistance/self.bundle.num_conductors * 1609 * self.length
         Xa = 377 * 2e-7 * math.log(self.geometry.DEQ / self.bundle.DSL) * 1609  * self.length # ohm
         return complex(Ra, Xa)/zbase
 
-    def calculate_shunt_admittance(self, zbase: float):
+    def calculate_shunt_admittance(self, zbase: float = 100):
         """Calculate the shunt admittance of the transmission line."""
         y = 377 * 1609 * 2 * math.pi * 8.854e-12 / math.log(self.geometry.DEQ / self.bundle.DSC) * self.length
         return complex(0, y) * zbase
 
-    def calc_yprim(self, y_series:float, y_shunt:float):
-        return [[y_series + y_shunt/2, -y_series],[-y_series, y_series + y_shunt/2]]
 
     def __str__(self):
         """Return a formatted string representing the transmission line object."""
@@ -53,14 +52,13 @@ class TransmissionLine:
             # f"Y-Primitive Matrix: {self.yprim}"
         )
 
-"""
-TO BE IMPLEMENTED IN MILESTONE 3
+
     def calc_yprim(self):
         
         y_series = 1 / self.series_impedance if self.series_impedance != 0 else float('inf')
         y_shunt = self.shunt_admittance
-        return [[y_series + y_shunt, -y_series], [-y_series, y_series + y_shunt]]
-"""
+        return [[y_series + y_shunt/2, -y_series], [-y_series, y_series + y_shunt/2]]
+
 
 
 if __name__ == "__main__":
@@ -77,6 +75,11 @@ if __name__ == "__main__":
 
     line1 = TransmissionLine("Line 1", bus1, bus2, bundle1, geometry1, 10)
 
-    print(line1)
+    print(f"Zpu: {line1.series_impedance:.5f}, Bpu: {line1.shunt_admittance:.5f}")
+    print("Yprim Matrix: ")
+    # Format and print the Yprim matrix
+    yprim_df = pd.DataFrame(line1.calc_yprim())
+    print(yprim_df)
 
-    print(get_base_values(20, 100))
+
+

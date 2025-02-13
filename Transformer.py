@@ -1,4 +1,7 @@
+import pandas as pd
+
 from Bus import Bus
+
 
 class Transformer:
     def __init__(self, name: str, bus1: Bus, bus2: Bus, power_rating: float, impedance_percent: float,
@@ -28,7 +31,7 @@ class Transformer:
         """Calculate the admittance as the reciprocal of impedance."""
         return 1 / self.impedance if self.impedance != 0 else float('inf')
 
-    def calc_yprim(self, mva_base:float):
+    def calc_yprim(self, mva_base:float = 100):
         """Compute the primitive admittance matrix."""
         y = 1/self.calculate_impedance(mva_base)
         return [[y, -y], [-y, y]]
@@ -55,4 +58,9 @@ if __name__ == "__main__":
 
     transformer1 = Transformer("T1", bus1, bus2, 125, 8.5, 10)
 
-    print(transformer1)
+    # Assume 100 mva base
+    print("Zpu: ",transformer1.calculate_impedance(), "Ypu: ", transformer1.calculate_admittance())
+    print("Yprim Matrix: ")
+    # Format and print the Yprim matrix
+    yprim_df = pd.DataFrame(transformer1.calc_yprim())
+    print(yprim_df)
