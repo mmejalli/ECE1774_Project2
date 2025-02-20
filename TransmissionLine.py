@@ -1,16 +1,7 @@
-import math
-import pandas as pd
-
+import numpy as np
 from Bus import Bus
 from Bundle import Bundle
 from Geometry import Geometry
-from Conductor import Conductor
-
-
-def get_zbase(vbase, sbase):
-    """return Zbase"""
-    return vbase**2/sbase
-
 
 class TransmissionLine:
     def __init__(self, name: str, bus1: Bus, bus2: Bus, bundle: Bundle, geometry: Geometry, length: float):
@@ -21,7 +12,6 @@ class TransmissionLine:
         self.bundle = bundle
         self.geometry = geometry
         self.length = length
-        self.zbase = get_zbase(bus1.base_kv, 100)
 
         # Calculate series impedance and shunt admittance
         self.series_impedance = self.calculate_series_impedance()
@@ -30,58 +20,41 @@ class TransmissionLine:
 
     def calculate_series_impedance(self):
         """Calculate the series impedance of the transmission line."""
-        Ra = self.bundle.conductor.resistance/self.bundle.num_conductors * 1609 * self.length
-        Xa = 377 * 2e-7 * math.log(self.geometry.DEQ / self.bundle.DSL) * 1609  * self.length # ohm
-        return complex(Ra, Xa)
+        return 0.01 * self.length  # PLACEHOLDER, FIX WHEN SUBCLASSES IMPLEMENTED
 
     def calculate_shunt_admittance(self):
         """Calculate the shunt admittance of the transmission line."""
-        y = 377 * 1609 * 2 * math.pi * 8.854e-12 / math.log(self.geometry.DEQ / self.bundle.DSC) * self.length
-        return complex(0, y)
+        return 0.001 * self.length  # PLACEHOLDER, FIX WHEN SUBCLASSES IMPLEMENTED
 
+    def get_base_values(self, vbase, sbase):
+        """return Zbase and Ybase values"""
+        return vbase**2/sbase, 1/(vbase**2/sbase)
+
+    def calc_yprim(self):
+        """Compute the primitive admittance matrix."""
+        y_series = 1 / self.series_impedance if self.series_impedance != 0 else float('inf')
+        y_shunt = self.shunt_admittance
+        return np.array([[y_series + y_shunt, -y_series], [-y_series, y_series + y_shunt]])
 
     def __str__(self):
         """Return a formatted string representing the transmission line object."""
         return (
             f"Transmission Line: {self.name}\n"
-            f"Connected Buses: {self.bus1} <--> {self.bus2}\n"
-            f"Bundle: {self.bundle}\n"
-            f"Geometry: {self.geometry}\n"
+            f"Connected Buses: {self.bus1.name} <--> {self.bus2.name}\n"
+            f"Bundle: {self.bundle.name}\n"
+            f"Geometry: {self.geometry.name}\n"
             f"Length: {self.length} km\n"
             f"Series Impedance: {self.series_impedance} Ω\n"
             f"Shunt Admittance: {self.shunt_admittance} S\n"
-            # f"Y-Primitive Matrix: {self.yprim}"
+            f"Y-Primitive Matrix: {self.yprim}"
         )
-
-    # primitive matrix: diagonals are admittance connected to node, off-diagonals are negative of admittance btw nodes
-    def calc_yprim(self):
-
-        # stored impedance and admittance are ohm values. Per-unitize here
-        y_series = 1 / self.series_impedance * self.zbase if self.series_impedance != 0 else float('inf')
-        y_shunt = self.shunt_admittance * self.zbase
-        return [[y_series + y_shunt/2, -y_series], [-y_series, y_series + y_shunt/2]]
-
-
 
 if __name__ == "__main__":
     """
     TransmissionLine Validation
     """
+    #line1 = TransmissionLine("Line 1", bus1, bus2, bundle1, geometry1, 10)
 
-    bus1 = Bus("Bus 1", 20)
-    bus2 = Bus("Bus 2", 230)
+    #print(line1)
 
-    conductor1 = Conductor("Partridge", 0.642, 0.0217, 0.385, 460)
-    bundle1 = Bundle("Bundle 1", 3, 1.5, conductor1)
-    geometry1 = Geometry("Geometry1", 0, 0, 7, 0, 14, 0)
-
-    line1 = TransmissionLine("Line 1", bus1, bus2, bundle1, geometry1, 10)
-
-    print(f"Zpu: {line1.series_impedance:.5f}, Bpu: {line1.shunt_admittance:.5f}")
-    print("Yprim Matrix: ")
-    # Format and print the Yprim matrix
-    yprim_df = pd.DataFrame(line1.calc_yprim())
-    print(yprim_df)
-
-
-
+    #print(line1.get_base_values(20,100))
