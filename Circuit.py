@@ -6,6 +6,7 @@ from Conductor import Conductor
 from Transformer import Transformer
 from Bundle import Bundle
 from TransmissionLine import TransmissionLine
+from Geometry import Geometry
 
 
 class Circuit:
@@ -76,6 +77,7 @@ class Circuit:
 
         for key in self.transformers.keys():
 
+            print(key)
             #Finding Connected buses
             busIn=self.transformers[key].bus1
             busOut=self.transformers[key].bus2
@@ -97,10 +99,15 @@ class Circuit:
 
 
         for key in self.transmission_lines.keys():
+
+            print(key)
+
             busIn=self.transmission_lines[key].bus1
             busOut=self.transmission_lines[key].bus2
-            i=busIn.bus_index
-            j=busOut.bus_index
+            i=busIn.index
+            j=busOut.index
+
+
 
             temp=self.transmission_lines[key].calc_yprim()
 
@@ -112,19 +119,43 @@ class Circuit:
 
 
         self.ybus=y_admit
+
+
 if __name__ == "__main__":
 
     circuit1=Circuit("Circuit1")
-    circuit1.add_bus("bus1",13)
-    circuit1.add_bus("bus2",0.480)
-    circuit1.add_transformer("Tx1","bus1","bus2",100e3, 5,0)
+    circuit1.add_bus("bus1",20)
+    circuit1.add_bus("bus2",230)
+    circuit1.add_bus("bus3",230)
+    circuit1.add_bus("bus4",230)
+    circuit1.add_bus("bus5",230)
+    circuit1.add_bus("bus6",230)
+    circuit1.add_bus("bus7",18)
+
+    conductor1=Conductor("Partridge",0.642,0.0217,0.35,460)
+    bundle1=Bundle("Bundle1",2,1.5,conductor1)
+    geometry1=Geometry("Geometry1",0,0,9.75*2,0,9.75*4,0)
+
+    circuit1.add_transmission_lines("Line1","bus2","bus4",bundle1,geometry1,10)
+    circuit1.add_transmission_lines("line2","bus2","bus5",bundle1,geometry1,25)
+    circuit1.add_transmission_lines("line3","bus3","bus6",bundle1,geometry1,20)
+    circuit1.add_transmission_lines("Line4","bus4","bus6",bundle1,geometry1,20)
+    circuit1.add_transmission_lines("Line5","bus5","bus6",bundle1,geometry1,10)
+    circuit1.add_transmission_lines("Line6","bus4","bus5",bundle1,geometry1,35)
+
+    circuit1.add_transformer("Tx1","bus1","bus2",125,8.5,10)
+    circuit1.add_transformer("Tx2","bus6","bus7",200,10.5,12)
+
     circuit1.calc_y_admit()
 
-    circuit1.transformers["Tx1"].yprim()
-
-    print(circuit1.transformers["Tx1"].y_prim_mat)
     print(circuit1.ybus)
 
+
+
+    for key in circuit1.transmission_lines.keys():
+
+        print(key)
+        print(circuit1.transmission_lines[key],"\n")
 
 
 
