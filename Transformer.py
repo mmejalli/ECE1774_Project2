@@ -1,3 +1,4 @@
+import numpy as np
 from Bus import Bus
 
 class Transformer:
@@ -14,6 +15,7 @@ class Transformer:
         # Calculate impedance and admittance values
         self.impedance = self.calculate_impedance()
         self.admittance = 1 / self.impedance if self.impedance != 0 else float('inf')
+        self.y_prim_mat=None
 
     def calculate_impedance(self):
         """Calculate the impedance based on power rating and impedance percentage."""
@@ -28,4 +30,5 @@ class Transformer:
     def yprim(self):
         """Compute the primitive admittance matrix."""
         y = self.calculate_admittance()
-        return [[y, -y], [-y, y]]
+        self.y_prim_mat=np.array([[y, -y], [-y, y]])
+        return self.y_prim_mat

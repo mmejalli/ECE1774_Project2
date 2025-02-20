@@ -1,3 +1,5 @@
+import numpy as np
+
 from Bus import Bus
 from Geometry import Geometry
 from Conductor import Conductor
@@ -15,6 +17,7 @@ class Circuit:
         self.conductors={}
         self.geometry={}
         self.bundles={}
+        self.ybus=None
 
     def add_bus(self, name:str, base_kv:float):
 
@@ -66,7 +69,66 @@ class Circuit:
     def add_geometry(self, name:str, xa:float, ya:float, xb:float, yb:float, xc:float, yc:float):
         self.geometry[name]=Geometry(name,xa,ya,xb,yb,xc,yc)
 
+    def calc_y_admit(self):
+        n=len(self.buses)
+
+        y_admit=np.zeros((n,n))
+
+        for key in self.transformers.keys():
+
+            #Finding Connected buses
+            busIn=self.transformers[key].bus1
+            busOut=self.transformers[key].bus2
+
+            #Storing Transformer instance yprim matrix
+            temp=self.transformers[key].yprim()
+
+            #Placeholders for bus indicies
+            i=busIn.index
+            j=busOut.index
+
+            #y_admit[i:j+1,i:j+1]=y_admit[i:j+1,i:j+1] + self.transformers[key].y_prim_mat
+
+            #Moving y-prim values into y-admit matrix
+            y_admit[i, i] = y_admit[i, i] + temp[0, 0]
+            y_admit[i, j] = y_admit[i, j] + temp[0, 1]
+            y_admit[j, i] = y_admit[j, i] + temp[1, 0]
+            y_admit[j, j] = y_admit[j, j] + temp[1, 1]
+
+
+        for key in self.transmission_lines.keys():
+            busIn=self.transmission_lines[key].bus1
+            busOut=self.transmission_lines[key].bus2
+            i=busIn.bus_index
+            j=busOut.bus_index
+
+            temp=self.transmission_lines[key].calc_yprim()
+
+            #y_admit[i:j,i:j]=y_admit[i:j,i:j] + self.transmission_lines[key].y_prim_mat
+            y_admit[i, i] = y_admit[i,i] + temp[0, 0]
+            y_admit[i, j] = y_admit[i,j] + temp[0, 1]
+            y_admit[j, i] = y_admit[j,i] + temp[1, 0]
+            y_admit[j, j] = y_admit[j,j] + temp[1, 1]
+
+
+        self.ybus=y_admit
 if __name__ == "__main__":
+
+    circuit1=Circuit("Circuit1")
+    circuit1.add_bus("bus1",13)
+    circuit1.add_bus("bus2",0.480)
+    circuit1.add_transformer("Tx1","bus1","bus2",100e3, 5,0)
+    circuit1.calc_y_admit()
+
+    circuit1.transformers["Tx1"].yprim()
+
+    print(circuit1.transformers["Tx1"].y_prim_mat)
+    print(circuit1.ybus)
+
+
+
+
+
 
     ''' 
     #Testing Attribute Initialization
@@ -115,7 +177,7 @@ if __name__ == "__main__":
     '''
 
     #Testing Power System
-
+    '''
     circuit4=Circuit("Test Circuit 4")
 
     circuit4.add_bus("Bus1", 13)
@@ -148,8 +210,7 @@ if __name__ == "__main__":
 
     for transmission_line in circuit4.transmission_lines:
         print(circuit4.transmission_lines[transmission_line].name, circuit4.transmission_lines[transmission_line].bus1.name, circuit4.transmission_lines[transmission_line].bus2.name)
-
-
+'''
 
 
 
