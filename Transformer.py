@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 from Bus import Bus
 
 class Transformer:
@@ -39,3 +40,33 @@ class Transformer:
         x_pu = z_pu * self.x_over_r_ratio/np.sqrt(1+self.x_over_r_ratio**2)
         r_pu = z_pu * 1/np.sqrt(1 + self.x_over_r_ratio**2)
         return r_pu, x_pu
+
+    def __str__(self):
+        """Return a formatted string representing the transformer object."""
+        return (
+            f"Transformer: {self.name}\n"
+            f"Connected Buses: {self.bus1.name} <--> {self.bus2.name}\n"
+            f"Power Rating: {self.power_rating} MVA\n"
+            f"Impedance (%): {self.impedance_percent}%\n"
+            f"X/R Ratio: {self.x_over_r_ratio}\n"
+            f"Impedance (Ω): {self.impedance:.4f}\n"
+            f"Admittance (S): {self.admittance:.6f}\n"
+            f"Y-Primitive Matrix: {self.yprim}"
+        )
+
+
+if __name__ == "__main__":
+    """
+    Transformer Validation
+    """
+    bus1 = Bus("Bus 1", 20)
+    bus2 = Bus("Bus 2", 230)
+
+    transformer1 = Transformer("T1", bus1, bus2, 125, 8.5, 10)
+
+    # Assume 100 mva base
+    print("Zpu: ", transformer1.calculate_impedance(), "Ypu: ", transformer1.calculate_admittance())
+    print("Yprim Matrix: ")
+    # Format and print the Yprim matrix
+    yprim_df = pd.DataFrame(transformer1.calc_yprim())
+    print(yprim_df)
