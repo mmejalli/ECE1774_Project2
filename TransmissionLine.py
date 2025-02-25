@@ -1,4 +1,6 @@
 import math
+
+import numpy as np
 import pandas as pd
 
 from Bus import Bus
@@ -59,7 +61,7 @@ class TransmissionLine:
         # stored impedance and admittance are ohm values. Per-unitize here
         y_series = 1 / self.series_impedance * self.zbase if self.series_impedance != 0 else float('inf')
         y_shunt = self.shunt_admittance * self.zbase
-        return np.([[y_series + y_shunt/2, -y_series], [-y_series, y_series + y_shunt/2]])
+        return np.array([[y_series + y_shunt/2, -y_series], [-y_series, y_series + y_shunt/2]])
 
 
 

@@ -73,11 +73,10 @@ class Circuit:
     def calc_y_admit(self):
         n=len(self.buses)
 
-        y_admit=np.zeros((n,n))
+        y_admit=np.zeros((n,n),dtype=complex)
 
         for key in self.transformers.keys():
 
-            print(key)
             #Finding Connected buses
             busIn=self.transformers[key].bus1
             busOut=self.transformers[key].bus2
@@ -100,14 +99,10 @@ class Circuit:
 
         for key in self.transmission_lines.keys():
 
-            print(key)
-
             busIn=self.transmission_lines[key].bus1
             busOut=self.transmission_lines[key].bus2
             i=busIn.index
             j=busOut.index
-
-
 
             temp=self.transmission_lines[key].calc_yprim()
 
@@ -152,19 +147,8 @@ if __name__ == "__main__":
     circuit1.add_transformer("Tx2","bus6","bus7",200,10.5,12)
 
     circuit1.calc_y_admit()
-
+    np.set_printoptions(precision=4, suppress=True)
     print(circuit1.ybus)
-
-
-
-    for key in circuit1.transmission_lines.keys():
-
-        print(key)
-        Zbase, Ybase =circuit1.transmission_lines[key].get_base_values(circuit1.transmission_lines[key].bus1.base_kv, 100)
-        print(circuit1.transmission_lines[key],"\nZbase=",Zbase,"\nYbase=",Ybase,"\n")
-
-
-
 
 
     ''' 
