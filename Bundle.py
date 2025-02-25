@@ -13,7 +13,7 @@ class Bundle:
         self.calc_DSC()
 
     def calc_DSC(self):
-        #make sure rad is in feet
+        #make sure rad is in feet (divide by 2 to get radius, 12 to get feet)
         rad_ft=self.conductor.diam/24
 
         #Calculation of DSC changes for number of conductors.
@@ -26,7 +26,7 @@ class Bundle:
             case 3:
                 self.DSC=(rad_ft*self.spacing**2)**(1/3)
             case 4:
-                self.DSC=1.091*(rad_ft*self.spacing**4)**(1/4)
+                self.DSC=1.091*(rad_ft*self.spacing**3)**(1/4)
 
     # Calculation of DSC changes for number of conductors.
     # See Module 5 conductor bundling
@@ -39,7 +39,7 @@ class Bundle:
             case 3:
                 self.DSL=(self.conductor.GMR * self.spacing**2)**(1/3)
             case 4:
-                self.DSL=(self.conductor.GMR * self.spacing**4)**(1/4)
+                self.DSL=(self.conductor.GMR * self.spacing**3)**(1/4)
 
 
 
