@@ -150,6 +150,8 @@ if __name__ == "__main__":
 
     print(circuit1.ybus)
 
+    print(circuit1.transformers["Tx1"].Rpu_Xpu())
+    print(circuit1.transformers["Tx2"].Rpu_Xpu())
 
 
     for key in circuit1.transmission_lines.keys():

@@ -32,3 +32,10 @@ class Transformer:
         y = self.calculate_admittance()
         self.y_prim_mat=np.array([[y, -y], [-y, y]])
         return self.y_prim_mat
+
+    def Rpu_Xpu(self):
+        base_impedance = (self.bus1.base_kv ** 2) / self.power_rating
+        z_pu = self.impedance_percent / 100
+        x_pu = z_pu * self.x_over_r_ratio/np.sqrt(1+self.x_over_r_ratio**2)
+        r_pu = z_pu * 1/np.sqrt(1 + self.x_over_r_ratio**2)
+        return r_pu, x_pu

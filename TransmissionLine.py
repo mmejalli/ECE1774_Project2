@@ -1,4 +1,5 @@
 import numpy as np
+import math
 from Bus import Bus
 from Bundle import Bundle
 from Geometry import Geometry
@@ -20,15 +21,18 @@ class TransmissionLine:
 
     def calculate_series_impedance(self):
         """Calculate the series impedance of the transmission line."""
-        return 0.01 * self.length  # PLACEHOLDER, FIX WHEN SUBCLASSES IMPLEMENTED
+        Ra = self.bundle.conductor.resistance / self.bundle.num_conductors * 1609 * self.length
+        Xa = 377 * 2e-7 * math.log(self.geometry.DEQ / self.bundle.DSL) * 1609 * self.length  # ohm
+        return complex(Ra, Xa)
 
     def calculate_shunt_admittance(self):
         """Calculate the shunt admittance of the transmission line."""
-        return 0.001 * self.length  # PLACEHOLDER, FIX WHEN SUBCLASSES IMPLEMENTED
+        y = 377 * 1609 * 2 * math.pi * 8.854e-12 / math.log(self.geometry.DEQ / self.bundle.DSC) * self.length
+        return complex(0, y)
 
-    def get_base_values(self, vbase, sbase):
-        """return Zbase and Ybase values"""
-        return vbase**2/sbase, 1/(vbase**2/sbase)
+    def get_zbase(self):
+        """return Zbase value"""
+        return self.bus1.base_kv**2/100
 
     def calc_yprim(self):
         """Compute the primitive admittance matrix."""
@@ -44,8 +48,8 @@ class TransmissionLine:
             f"Bundle: {self.bundle.name}\n"
             f"Geometry: {self.geometry.name}\n"
             f"Length: {self.length} km\n"
-            f"Series Impedance: {self.series_impedance} Ω\n"
-            f"Shunt Admittance: {self.shunt_admittance} S\n"
+            f"Series Impedance: {self.series_impedance/self.get_zbase()} pu\n"
+            f"Shunt Admittance: {self.shunt_admittance/self.get_zbase()} pu\n"
             f"Y-Primitive Matrix: {self.yprim}"
         )
 
