@@ -1,6 +1,6 @@
 import numpy as np
-import pandas as pd
 from Bus import Bus
+import math
 
 class Transformer:
     def __init__(self, name: str, bus1: Bus, bus2: Bus, power_rating: float, impedance_percent: float,
@@ -21,8 +21,11 @@ class Transformer:
     def calculate_impedance(self):
         """Calculate the impedance based on power rating and impedance percentage."""
         base_impedance = (self.bus1.base_kv ** 2) / self.power_rating
-        z_pu = self.impedance_percent / 100
-        return z_pu * base_impedance
+        system_impedence = (self.bus1.base_kv ** 2) / 100 # Change in settings, 100 represents the system power base
+        z_pu_mag = ((self.impedance_percent / 100)*base_impedance)/system_impedence
+        z_pu_angle=math.atan(self.x_over_r_ratio)
+        z_pu=z_pu_mag * complex(math.cos(z_pu_angle), math.sin(z_pu_angle))
+        return z_pu
 
     def calculate_admittance(self):
         """Calculate the admittance as the reciprocal of impedance."""
@@ -33,6 +36,13 @@ class Transformer:
         y = self.calculate_admittance()
         self.y_prim_mat=np.array([[y, -y], [-y, y]])
         return self.y_prim_mat
+
+    def Rpu_Xpu(self):
+        base_impedance = (self.bus1.base_kv ** 2) / self.power_rating
+        z_pu = self.impedance_percent / 100
+        x_pu = z_pu * self.x_over_r_ratio/np.sqrt(1+self.x_over_r_ratio**2)
+        r_pu = z_pu * 1/np.sqrt(1 + self.x_over_r_ratio**2)
+        return r_pu, x_pu
 
     def __str__(self):
         """Return a formatted string representing the transformer object."""
@@ -47,7 +57,7 @@ class Transformer:
             f"Y-Primitive Matrix: {self.yprim}"
         )
 
-
+'''
 if __name__ == "__main__":
     """
     Transformer Validation
@@ -63,3 +73,4 @@ if __name__ == "__main__":
     # Format and print the Yprim matrix
     yprim_df = pd.DataFrame(transformer1.calc_yprim())
     print(yprim_df)
+'''
