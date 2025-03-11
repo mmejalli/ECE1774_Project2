@@ -32,13 +32,13 @@ class TransmissionLine:
 
     def calculate_series_impedance(self):
         """Calculate the series impedance of the transmission line."""
-        Ra = self.bundle.conductor.resistance/self.bundle.num_conductors * 1609 * self.length
-        Xa = 377 * 2e-7 * math.log(self.geometry.DEQ / self.bundle.DSL) * 1609  * self.length # ohm
+        Ra = (self.bundle.conductor.resistance/self.bundle.num_conductors  * self.length) /self.zbase
+        Xa = (377 * 2e-7 * math.log(self.geometry.DEQ / self.bundle.DSL) * 1609  * self.length)/self.zbase # ohm
         return complex(Ra, Xa)
 
     def calculate_shunt_admittance(self):
         """Calculate the shunt admittance of the transmission line."""
-        y = 377 * 1609 * 2 * math.pi * 8.854e-12 / math.log(self.geometry.DEQ / self.bundle.DSC) * self.length
+        y = (377 * 1609 * 2 * math.pi * 8.854e-12 / math.log(self.geometry.DEQ / self.bundle.DSC) * self.length)*self.zbase
         return complex(0, y)
 
 
@@ -59,8 +59,8 @@ class TransmissionLine:
     def calc_yprim(self):
 
         # stored impedance and admittance are ohm values. Per-unitize here
-        y_series = 1 / self.series_impedance * self.zbase if self.series_impedance != 0 else float('inf')
-        y_shunt = self.shunt_admittance * self.zbase
+        y_series = 1 / self.series_impedance  if self.series_impedance != 0 else float('inf')
+        y_shunt = self.shunt_admittance
         return np.array([[y_series + y_shunt/2, -y_series], [-y_series, y_series + y_shunt/2]])
 
 

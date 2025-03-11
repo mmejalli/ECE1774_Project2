@@ -130,14 +130,14 @@ if __name__ == "__main__":
     circuit1.add_bus("bus7",18)
 
     #Transmission Line sub-classes
-    conductor1=Conductor("Partridge",0.642,0.0217,0.35,460)
+    conductor1=Conductor("Partridge",0.642,0.0217,0.385,460)
     bundle1=Bundle("Bundle1",2,1.5,conductor1)
     geometry1=Geometry("Geometry1",0,0,9.75*2,0,9.75*4,0)
 
     #Adding Transmission Lines
     circuit1.add_transmission_lines("Line1","bus2","bus4",bundle1,geometry1,10)
     circuit1.add_transmission_lines("line2","bus2","bus5",bundle1,geometry1,25)
-    circuit1.add_transmission_lines("line3","bus3","bus6",bundle1,geometry1,20)
+    circuit1.add_transmission_lines("line3","bus3","bus5",bundle1,geometry1,20)
     circuit1.add_transmission_lines("Line4","bus4","bus6",bundle1,geometry1,20)
     circuit1.add_transmission_lines("Line5","bus5","bus6",bundle1,geometry1,10)
     circuit1.add_transmission_lines("Line6","bus4","bus5",bundle1,geometry1,35)
@@ -156,6 +156,13 @@ if __name__ == "__main__":
 
     print(circuit1.transformers["Tx1"].Rpu_Xpu())
     print(circuit1.transformers["Tx2"].Rpu_Xpu())
+
+    print(circuit1.transformers["Tx1"].yprim())
+
+    for key in circuit1.transmission_lines.keys():
+        print("Key",circuit1.transmission_lines[key].shunt_admittance)
+
+
 
     ''' 
     #Testing Attribute Initialization
