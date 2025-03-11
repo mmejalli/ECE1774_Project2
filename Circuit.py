@@ -142,6 +142,10 @@ if __name__ == "__main__":
     circuit1.add_transmission_lines("Line5","bus5","bus6",bundle1,geometry1,10)
     circuit1.add_transmission_lines("Line6","bus4","bus5",bundle1,geometry1,35)
 
+    for key in circuit1.transmission_lines.keys():
+        print(circuit1.transmission_lines[key], "\n")
+
+
     #Adding Transformers
     circuit1.add_transformer("Tx1","bus1","bus2",125,8.5,10)
     circuit1.add_transformer("Tx2","bus6","bus7",200,10.5,12)
