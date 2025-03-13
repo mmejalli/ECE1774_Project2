@@ -2,7 +2,7 @@ class Bus:
 
     bus_count = 0
 
-    def __init__(self, name, base_kv):
+    def __init__(self, name:str, base_kv:float, vpu:float=1, delta:float=0, bus_type:str="PQ_Bus"):
         """
         Initialize a Bus object.
 
@@ -12,6 +12,14 @@ class Bus:
         self.name = name
         self.base_kv = base_kv
         self.index = Bus.bus_count
+        self.vpu = vpu
+        self.delta = delta
+
+        if bus_type =="Slack_Bus" or bus_type =="PQ_Bus" or bus_type =="PV_Bus":
+            self.bus_type = bus_type
+        else:
+            print("Invalid bus type")
+
         Bus.bus_count += 1
 
     def __str__(self):

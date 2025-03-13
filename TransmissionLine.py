@@ -7,6 +7,7 @@ from Bus import Bus
 from Bundle import Bundle
 from Geometry import Geometry
 from Conductor import Conductor
+from Settings import s
 
 
 def get_zbase(vbase, sbase):
@@ -23,7 +24,7 @@ class TransmissionLine:
         self.bundle = bundle
         self.geometry = geometry
         self.length = length
-        self.zbase = get_zbase(bus1.base_kv, 100)
+        self.zbase = get_zbase(bus1.base_kv, s.base_power)
 
         # Calculate series impedance and shunt admittance
         self.series_impedance = self.calculate_series_impedance()
@@ -33,12 +34,12 @@ class TransmissionLine:
     def calculate_series_impedance(self):
         """Calculate the series impedance of the transmission line."""
         Ra = (self.bundle.conductor.resistance/self.bundle.num_conductors  * self.length) /self.zbase
-        Xa = (377 * 2e-7 * math.log(self.geometry.DEQ / self.bundle.DSL) * 1609  * self.length)/self.zbase # ohm
+        Xa = (2*math.pi*s.frequency * 2e-7 * math.log(self.geometry.DEQ / self.bundle.DSL) * 1609  * self.length)/self.zbase # ohm
         return complex(Ra, Xa)
 
     def calculate_shunt_admittance(self):
         """Calculate the shunt admittance of the transmission line."""
-        y = (377 * 1609 * 2 * math.pi * 8.854e-12 / math.log(self.geometry.DEQ / self.bundle.DSC) * self.length)*self.zbase
+        y = (2*math.pi*s.frequency * 1609 * 2 * math.pi * 8.854e-12 / math.log(self.geometry.DEQ / self.bundle.DSC) * self.length)*self.zbase
         return complex(0, y)
 
 
