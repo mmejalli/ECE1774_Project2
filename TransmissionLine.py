@@ -50,8 +50,8 @@ class TransmissionLine:
             f"Bundle: {self.bundle}\n"
             f"Geometry: {self.geometry}\n"
             f"Length: {self.length} km\n"
-            f"Series Impedance: {self.series_impedance/self.zbase} pu\n"
-            f"Shunt Admittance: {self.shunt_admittance/self.zbase} pu\n"
+            f"Series Impedance: {self.series_impedance} pu\n"
+            f"Shunt Admittance: {self.shunt_admittance} pu\n"
             f"Y-Primitive Matrix: {self.yprim}"
         )
 

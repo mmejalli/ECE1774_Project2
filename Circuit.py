@@ -150,18 +150,15 @@ if __name__ == "__main__":
     circuit1.add_transformer("Tx1","bus1","bus2",125,8.5,10)
     circuit1.add_transformer("Tx2","bus6","bus7",200,10.5,12)
 
+
     circuit1.calc_y_admit()
     np.set_printoptions(precision=4, suppress=True)
     print(circuit1.ybus)
 
-    print(circuit1.transformers["Tx1"].Rpu_Xpu())
-    print(circuit1.transformers["Tx2"].Rpu_Xpu())
+    print("Tx1: ", circuit1.transformers["Tx1"].Rpu_Xpu())
+    print("Tx2: ", circuit1.transformers["Tx2"].Rpu_Xpu())
 
     print(circuit1.transformers["Tx1"].yprim())
-
-    for key in circuit1.transmission_lines.keys():
-        print("Key",circuit1.transmission_lines[key].shunt_admittance)
-
 
 
     ''' 
