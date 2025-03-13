@@ -1,5 +1,6 @@
 import numpy as np
 from Bus import Bus
+from Settings import s
 import math
 
 class Transformer:
@@ -21,7 +22,7 @@ class Transformer:
     def calculate_impedance(self):
         """Calculate the impedance based on power rating and impedance percentage."""
         base_impedance = (self.bus1.base_kv ** 2) / self.power_rating
-        system_impedence = (self.bus1.base_kv ** 2) / 100 # Change in settings, 100 represents the system power base
+        system_impedence = (self.bus1.base_kv ** 2) / s.base_power # Change in settings, 100 represents the system power base
         z_pu_mag = ((self.impedance_percent / 100)*base_impedance)/system_impedence
         z_pu_angle=math.atan(self.x_over_r_ratio)
         z_pu=z_pu_mag * complex(math.cos(z_pu_angle), math.sin(z_pu_angle))

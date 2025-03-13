@@ -1,5 +1,5 @@
 import numpy as np
-
+import pandas as pd
 from Bus import Bus
 from Geometry import Geometry
 from Conductor import Conductor
@@ -112,6 +112,15 @@ class Circuit:
             y_admit[j, i] = y_admit[j,i] + temp[1, 0]
             y_admit[j, j] = y_admit[j,j] + temp[1, 1]
 
+        bus_names = list(self.buses.keys())
+        y_admit_df = pd.DataFrame(y_admit, index=bus_names, columns=bus_names)
+
+        pd.set_option('display.max_rows', None)  # Show all rows
+        pd.set_option('display.max_columns', None)  # Show all columns
+        pd.set_option('display.width', 1000)  # Increase the display width
+        pd.set_option('display.float_format', lambda x: f'{x.real:.5f}{x.imag:+.5f}j')
+        # Print the DataFrame
+        print(y_admit_df)
 
         self.ybus=y_admit
 
@@ -121,7 +130,7 @@ if __name__ == "__main__":
     circuit1=Circuit("Circuit1")
 
     #Adding buses
-    circuit1.add_bus("bus1",20)
+    circuit1.add_bus("bus1",20    )
     circuit1.add_bus("bus2",230)
     circuit1.add_bus("bus3",230)
     circuit1.add_bus("bus4",230)
@@ -136,29 +145,21 @@ if __name__ == "__main__":
 
     #Adding Transmission Lines
     circuit1.add_transmission_lines("Line1","bus2","bus4",bundle1,geometry1,10)
-    circuit1.add_transmission_lines("line2","bus2","bus5",bundle1,geometry1,25)
+    circuit1.add_transmission_lines("line2","bus2","bus3",bundle1,geometry1,25)
     circuit1.add_transmission_lines("line3","bus3","bus5",bundle1,geometry1,20)
     circuit1.add_transmission_lines("Line4","bus4","bus6",bundle1,geometry1,20)
     circuit1.add_transmission_lines("Line5","bus5","bus6",bundle1,geometry1,10)
     circuit1.add_transmission_lines("Line6","bus4","bus5",bundle1,geometry1,35)
 
-    for key in circuit1.transmission_lines.keys():
-        print(circuit1.transmission_lines[key], "\n")
-
-
     #Adding Transformers
     circuit1.add_transformer("Tx1","bus1","bus2",125,8.5,10)
     circuit1.add_transformer("Tx2","bus6","bus7",200,10.5,12)
 
-
     circuit1.calc_y_admit()
-    np.set_printoptions(precision=4, suppress=True)
-    print(circuit1.ybus)
 
-    print("Tx1: ", circuit1.transformers["Tx1"].Rpu_Xpu())
-    print("Tx2: ", circuit1.transformers["Tx2"].Rpu_Xpu())
 
-    print(circuit1.transformers["Tx1"].yprim())
+
+
 
 
     ''' 
