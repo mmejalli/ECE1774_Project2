@@ -51,9 +51,9 @@ class TransmissionLine:
             f"Bundle: {self.bundle}\n"
             f"Geometry: {self.geometry}\n"
             f"Length: {self.length} km\n"
-            f"Series Impedance: {self.series_impedance} Ω\n"
-            f"Shunt Admittance: {self.shunt_admittance} S\n"
-            # f"Y-Primitive Matrix: {self.yprim}"
+            f"Series Impedance: {self.series_impedance} pu\n"
+            f"Shunt Admittance: {self.shunt_admittance} pu\n"
+            f"Y-Primitive Matrix: {self.yprim}"
         )
 
     # primitive matrix: diagonals are admittance connected to node, off-diagonals are negative of admittance btw nodes

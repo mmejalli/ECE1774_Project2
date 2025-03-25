@@ -22,6 +22,8 @@ class Bus:
 
         Bus.bus_count += 1
 
+
+
     def __str__(self):
         """Return a formatted string representing the bus object."""
         return (
