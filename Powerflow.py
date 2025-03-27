@@ -1,14 +1,18 @@
 # This class describes the powerflow modeling of a system
 # Includes power mismatch and power injection equations
+from contextlib import nullcontext
 
 from Circuit import Circuit
 from Bus import Bus
 from Geometry import Geometry
 from Conductor import Conductor
 from Bundle import Bundle
+from Settings import Settings
 
 import numpy as np
 import pandas as pd
+
+s=Settings()
 
 class Powerflow:
     def __init__(self, circuit: Circuit):
@@ -22,7 +26,7 @@ class Powerflow:
         p_injected,q_injected = self.calc_PQ()
 
         #Compute Mismatch
-        self.mismatch(p_injected,q_injected)
+        self.calc_mismatch(p_injected,q_injected)
 
 
 
@@ -33,10 +37,10 @@ class Powerflow:
 
     def calc_PQ(self):
         # Initialize real and reactive power array and running totals
-        p_calc = np.zeros(len(self.circuit.buses))
+        p_calc = np.zeros(len(self.circuit.buses), dtype=np.float64)
         p_k = 0
 
-        q_calc = np.zeros(len(self.circuit.buses))
+        q_calc = np.zeros(len(self.circuit.buses), dtype=np.float64)
         q_k = 0
 
         #Create list of bus names
@@ -73,12 +77,38 @@ class Powerflow:
 
         return p_calc, q_calc
 
-    def mismatch(self, p_injected, q_injected):
+    def calc_mismatch(self, p_injected, q_injected):
         p_mismatch = np.zeros(len(self.circuit.buses))
         q_mismatch = np.zeros(len(self.circuit.buses))
 
-       # for k in range(0, len(self.circuit.buses)):
-           # p_mismatch =
+        # Create list of bus names
+        bus_names = list(self.circuit.buses.keys())
+
+        for k in range(0, len(self.circuit.buses)):
+            bus_k = self.circuit.buses[bus_names[k]]
+            if bus_k.bus_type == "Slack_Bus":
+                p_mismatch[k] = None
+                q_mismatch[k] = None
+            elif bus_k.bus_type == "PQ_Bus":
+                p_mismatch[k] = self.circuit.buses[bus_names[k]].load.real_power/s.base_power - p_injected[k]
+                q_mismatch[k] = self.circuit.buses[bus_names[k]].load.reactive_power/s.base_power - q_injected[k]
+            else:
+                p_mismatch[k] = self.circuit.buses[bus_names[k]].generator.mw_setpoint/s.base_power - p_injected[k]
+                q_mismatch[k] = None
+
+        ##Print mismatch matrices in a dataframe
+        mismatch_df = pd.DataFrame(
+            [np.round(p_mismatch, 4), np.round(q_mismatch, 4)],
+            index=["P Mismatch (MW)", "Q Mismatch (MVAR)"],
+            columns=bus_names,
+        )
+        print(mismatch_df)
+
+        return p_mismatch, q_mismatch
+
+
+
+
 
 
 if __name__ == "__main__":
@@ -89,13 +119,13 @@ if __name__ == "__main__":
     circuit1 = Circuit("Circuit1")
 
     # Adding buses
-    circuit1.add_bus("bus1", 20)
+    circuit1.add_bus("bus1", 20, "Slack_Bus")
     circuit1.add_bus("bus2", 230)
     circuit1.add_bus("bus3", 230)
     circuit1.add_bus("bus4", 230)
     circuit1.add_bus("bus5", 230)
     circuit1.add_bus("bus6", 230)
-    circuit1.add_bus("bus7", 18)
+    circuit1.add_bus("bus7", 18, "PV_Bus")
 
     # Transmission Line sub-classes
     conductor1 = Conductor("Partridge", 0.642, 0.0217, 0.385, 460)
@@ -113,6 +143,16 @@ if __name__ == "__main__":
     # Adding Transformers
     circuit1.add_transformer("Tx1", "bus1", "bus2", 125, 8.5, 10)
     circuit1.add_transformer("Tx2", "bus6", "bus7", 200, 10.5, 12)
+
+    # Adding Generators
+    circuit1.add_generator("Gen2", 1.0, 200.0, "bus7")
+
+    # Adding Loads
+    circuit1.add_load("Load1", 0, 0, "bus2")
+    circuit1.add_load("Load2", 110, 50, "bus3")
+    circuit1.add_load("Load3", 100, 70, "bus4")
+    circuit1.add_load("Load4", 100, 65, "bus5")
+    circuit1.add_load("Load5", 0, 0, "bus6")
 
     circuit1.calc_y_admit()
 
