@@ -102,7 +102,10 @@ class Powerflow:
             index=["P Mismatch (MW)", "Q Mismatch (MVAR)"],
             columns=bus_names,
         )
-        print(mismatch_df)
+        print(mismatch_df,"\n")
+
+        print(p_mismatch,"\n")
+        print(q_mismatch)
 
         return p_mismatch, q_mismatch
 
