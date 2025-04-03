@@ -84,17 +84,20 @@ class Powerflow:
         # Create list of bus names
         bus_names = list(self.circuit.buses.keys())
 
+
         for k in range(0, len(self.circuit.buses)):
             bus_k = self.circuit.buses[bus_names[k]]
             if bus_k.bus_type == "Slack_Bus":
                 p_mismatch[k] = None
                 q_mismatch[k] = None
             elif bus_k.bus_type == "PQ_Bus":
-                p_mismatch[k] = self.circuit.buses[bus_names[k]].load.real_power/s.base_power - p_injected[k]
-                q_mismatch[k] = self.circuit.buses[bus_names[k]].load.reactive_power/s.base_power - q_injected[k]
-            else:
+                p_mismatch[k] = -self.circuit.buses[bus_names[k]].load.real_power/s.base_power - p_injected[k]
+                q_mismatch[k] = -self.circuit.buses[bus_names[k]].load.reactive_power/s.base_power - q_injected[k]
+            elif bus_k.bus_type == "PV_Bus":
                 p_mismatch[k] = self.circuit.buses[bus_names[k]].generator.mw_setpoint/s.base_power - p_injected[k]
                 q_mismatch[k] = None
+            else:
+                print("Not valid bus type")
 
         ##Print mismatch matrices in a dataframe
         mismatch_df = pd.DataFrame(
@@ -122,13 +125,13 @@ if __name__ == "__main__":
     circuit1 = Circuit("Circuit1")
 
     # Adding buses
-    circuit1.add_bus("bus1", 20, "Slack_Bus")
+    circuit1.add_bus("bus1", 20, 1, 0, "Slack_Bus")
     circuit1.add_bus("bus2", 230)
     circuit1.add_bus("bus3", 230)
     circuit1.add_bus("bus4", 230)
     circuit1.add_bus("bus5", 230)
     circuit1.add_bus("bus6", 230)
-    circuit1.add_bus("bus7", 18, "PV_Bus")
+    circuit1.add_bus("bus7", 18, 1, 0, "PV_Bus")
 
     # Transmission Line sub-classes
     conductor1 = Conductor("Partridge", 0.642, 0.0217, 0.385, 460)
@@ -148,6 +151,7 @@ if __name__ == "__main__":
     circuit1.add_transformer("Tx2", "bus6", "bus7", 200, 10.5, 12)
 
     # Adding Generators
+    circuit1.add_generator("Gen1", 1.0, 100, "bus1")
     circuit1.add_generator("Gen2", 1.0, 200.0, "bus7")
 
     # Adding Loads

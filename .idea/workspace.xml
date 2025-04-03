@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79ff69e3-602d-4826-9f13-b4c89006b399" name="Changes" comment="Milestone 6 Mismatch implemented">
-      <change afterPath="$PROJECT_DIR$/Newton_Raphson.py" afterDir="false" />
+    <list default="true" id="79ff69e3-602d-4826-9f13-b4c89006b399" name="Changes" comment="Milestone 6 Checked Off, Milestone 8 Newton Raphson first lines">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Powerflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/Powerflow.py" afterDir="false" />
     </list>
@@ -52,29 +51,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.Bundle.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Bus.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Circuit.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Conductor.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Geometry.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Load.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Powerflow.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Transformer.executor&quot;: &quot;Run&quot;,
-    &quot;Python.TransmissionLine.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Validation.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;WR__Branch&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/wdrop/OneDrive - University of Pittsburgh/25 Spring School/Advanced Power Systems/ECE1774_Project2&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Bundle.executor": "Run",
+    "Python.Bus.executor": "Run",
+    "Python.Circuit.executor": "Run",
+    "Python.Conductor.executor": "Run",
+    "Python.Geometry.executor": "Run",
+    "Python.Load.executor": "Run",
+    "Python.Powerflow.executor": "Run",
+    "Python.Transformer.executor": "Run",
+    "Python.TransmissionLine.executor": "Run",
+    "Python.Validation.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "WR__Branch",
+    "last_opened_file_path": "C:/Users/wdrop/OneDrive - University of Pittsburgh/25 Spring School/Advanced Power Systems/ECE1774_Project2/Load.py",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\wdrop\OneDrive - University of Pittsburgh\25 Spring School\Advanced Power Systems\ECE1774_Project2" />
@@ -102,7 +101,7 @@
       <workItem from="1740661657547" duration="4066000" />
       <workItem from="1741695451116" duration="15760000" />
       <workItem from="1742472721835" duration="15440000" />
-      <workItem from="1743509629978" duration="2052000" />
+      <workItem from="1743509629978" duration="4968000" />
     </task>
     <task id="LOCAL-00001" summary="Validation File.&#10;Need to finish:&#10;T-line methods and validation">
       <option name="closed" value="true" />
@@ -232,7 +231,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743081406408</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Milestone 6 Checked Off, Milestone 8 Newton Raphson first lines">
+      <option name="closed" value="true" />
+      <created>1743511756155</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1743511756155</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,20 +281,11 @@
     <MESSAGE value="Last changes on branch, merging with main" />
     <MESSAGE value="Milestone 6 - Powerflow power injections" />
     <MESSAGE value="Milestone 6 Mismatch implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Milestone 6 Mismatch implemented" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Circuit.py</url>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Milestone 6 Checked Off, Milestone 8 Newton Raphson first lines" />
+    <option name="LAST_COMMIT_MESSAGE" value="Milestone 6 Checked Off, Milestone 8 Newton Raphson first lines" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ECE1774_Project2$Powerflow.coverage" NAME="Powerflow Coverage Results" MODIFIED="1743509866950" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Powerflow.coverage" NAME="Powerflow Coverage Results" MODIFIED="1743684992941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Bus.coverage" NAME="Bus Coverage Results" MODIFIED="1741710398069" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Geometry.coverage" NAME="Geometry Coverage Results" MODIFIED="1738851139872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Bundle.coverage" NAME="Bundle Coverage Results" MODIFIED="1738851131279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
