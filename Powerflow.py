@@ -81,6 +81,9 @@ class Powerflow:
         p_mismatch = np.zeros(len(self.circuit.buses))
         q_mismatch = np.zeros(len(self.circuit.buses))
 
+        non_slack_indeces = []
+        pq_indeces = []
+
         # Create list of bus names
         bus_names = list(self.circuit.buses.keys())
 
@@ -90,14 +93,21 @@ class Powerflow:
             if bus_k.bus_type == "Slack_Bus":
                 p_mismatch[k] = None
                 q_mismatch[k] = None
+
             elif bus_k.bus_type == "PQ_Bus":
                 p_mismatch[k] = -self.circuit.buses[bus_names[k]].load.real_power/s.base_power - p_injected[k]
                 q_mismatch[k] = -self.circuit.buses[bus_names[k]].load.reactive_power/s.base_power - q_injected[k]
+                non_slack_indeces.append(k)
+                pq_indeces.append(k)
+
             elif bus_k.bus_type == "PV_Bus":
                 p_mismatch[k] = self.circuit.buses[bus_names[k]].generator.mw_setpoint/s.base_power - p_injected[k]
                 q_mismatch[k] = None
+                non_slack_indeces.append(k)
+
             else:
                 print("Not valid bus type")
+
 
         ##Print mismatch matrices in a dataframe
         mismatch_df = pd.DataFrame(
@@ -107,8 +117,17 @@ class Powerflow:
         )
         print(mismatch_df,"\n")
 
-        print(p_mismatch,"\n")
-        print(q_mismatch)
+
+
+        print ("Non-slack indeces:", non_slack_indeces, "\n")
+        print ("PQ indeces:", pq_indeces, "\n")
+
+        p_mismatch = p_mismatch[non_slack_indeces]
+        q_mismatch = q_mismatch[pq_indeces]
+
+        mismatch = np.concatenate((p_mismatch.reshape(-1, 1), q_mismatch.reshape(-1, 1)), axis=0)
+
+        print(mismatch,"\n")
 
         return p_mismatch, q_mismatch
 
