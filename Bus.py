@@ -1,7 +1,12 @@
+from Load import Load
+from Generator import Generator
+
 class Bus:
+
 
     bus_count = 0
 
+    #Recently refactored
     def __init__(self, name:str, base_kv:float, vpu:float=1, delta:float=0, bus_type:str="PQ_Bus"):
         """
         Initialize a Bus object.
@@ -14,6 +19,8 @@ class Bus:
         self.index = Bus.bus_count
         self.vpu = vpu
         self.delta = delta
+        self.generator = Generator("placeholder", 0, 0)
+        self.load = Load("placeholder", 0, 0)
 
         if bus_type =="Slack_Bus" or bus_type =="PQ_Bus" or bus_type =="PV_Bus":
             self.bus_type = bus_type

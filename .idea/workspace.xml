@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="79ff69e3-602d-4826-9f13-b4c89006b399" name="Changes" comment="Milestone 6 &#10;Mismatch correct, Powerworld Validation">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Newton_Raphson.py" beforeDir="false" afterPath="$PROJECT_DIR$/Newton_Raphson.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="main" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;wdroper33&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mmejalli/ECE1774_Project2.git&quot;,
+    &quot;accountId&quot;: &quot;cb826532-7198-41e4-a880-18fcbc88bb2a&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2sXgO1p5Vl34KrjGMsmmmApGD59" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Bundle.executor": "Run",
+    "Python.Bus.executor": "Run",
+    "Python.Circuit.executor": "Run",
+    "Python.Conductor.executor": "Run",
+    "Python.Geometry.executor": "Run",
+    "Python.Load.executor": "Run",
+    "Python.Powerflow.executor": "Run",
+    "Python.Transformer.executor": "Run",
+    "Python.TransmissionLine.executor": "Run",
+    "Python.Validation.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "WR__Branch",
+    "last_opened_file_path": "C:/Users/wdrop/OneDrive - University of Pittsburgh/25 Spring School/Advanced Power Systems/ECE1774_Project2/Load.py",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\wdrop\OneDrive - University of Pittsburgh\25 Spring School\Advanced Power Systems\ECE1774_Project2" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-PY-243.22562.220" />
+        <option value="bundled-python-sdk-0fc6c617c4bd-9a18a617cbe4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.22562.220" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="79ff69e3-602d-4826-9f13-b4c89006b399" name="Changes" comment="" />
+      <created>1738607297653</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1738607297653</updated>
+      <workItem from="1738607298849" duration="307000" />
+      <workItem from="1738674921069" duration="22520000" />
+      <workItem from="1740489063553" duration="4998000" />
+      <workItem from="1740661657547" duration="4066000" />
+      <workItem from="1741695451116" duration="15760000" />
+      <workItem from="1742472721835" duration="15440000" />
+      <workItem from="1743509629978" duration="5938000" />
+    </task>
+    <task id="LOCAL-00001" summary="Validation File.&#10;Need to finish:&#10;T-line methods and validation">
+      <option name="closed" value="true" />
+      <created>1738607359762</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1738607359762</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Validation File.&#10;Need to finish:&#10;T-line methods and validation">
+      <option name="closed" value="true" />
+      <created>1738607373667</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1738607373667</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Validation in class files, to string methods, need to finish T-line equations">
+      <option name="closed" value="true" />
+      <created>1738677512304</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1738677512304</updated>
+    </task>
+    <task id="LOCAL-00004" summary="series impedance updated">
+      <option name="closed" value="true" />
+      <created>1738678727210</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1738678727210</updated>
+    </task>
+    <task id="LOCAL-00005" summary="milestone 1 finished">
+      <option name="closed" value="true" />
+      <created>1738849184864</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1738849184864</updated>
+    </task>
+    <task id="LOCAL-00006" summary="revised TransmissionLine.py">
+      <option name="closed" value="true" />
+      <created>1738849603621</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1738849603621</updated>
+    </task>
+    <task id="LOCAL-00007" summary="revised TransmissionLine.py">
+      <option name="closed" value="true" />
+      <created>1738851314531</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1738851314531</updated>
+    </task>
+    <task id="LOCAL-00008" summary="milestone 3 finished content">
+      <option name="closed" value="true" />
+      <created>1739296829937</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1739296829937</updated>
+    </task>
+    <task id="LOCAL-00009" summary="milestone 3 finished validation">
+      <option name="closed" value="true" />
+      <created>1739454496297</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1739454496297</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Transmission Line edit">
+      <option name="closed" value="true" />
+      <created>1739455932411</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1739455932411</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Transmission Line edit">
+      <option name="closed" value="true" />
+      <created>1740492996550</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1740492996550</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Transmission Line edit">
+      <option name="closed" value="true" />
+      <created>1740493658940</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1740493658940</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Last changes on branch, merging with main">
+      <option name="closed" value="true" />
+      <created>1741695583718</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1741695583718</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Last changes on branch, merging with main">
+      <option name="closed" value="true" />
+      <created>1741869622002</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1741869622002</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Milestone 6 - Powerflow power injections">
+      <option name="closed" value="true" />
+      <created>1742476484250</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1742476484250</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Milestone 6 Mismatch implemented">
+      <option name="closed" value="true" />
+      <created>1743081406408</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1743081406408</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Milestone 6 Checked Off, Milestone 8 Newton Raphson first lines">
+      <option name="closed" value="true" />
+      <created>1743511756155</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1743511756155</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Milestone 6 &#10;Mismatch correct, Powerworld Validation">
+      <option name="closed" value="true" />
+      <created>1743685118419</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1743685118419</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/WR_Branch" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Validation File.&#10;Need to finish:&#10;T-line methods and validation" />
+    <MESSAGE value="Validation in class files, to string methods, need to finish T-line equations" />
+    <MESSAGE value="series impedance updated" />
+    <MESSAGE value="milestone 1 finished" />
+    <MESSAGE value="revised TransmissionLine.py" />
+    <MESSAGE value="milestone 3 finished content" />
+    <MESSAGE value="milestone 3 finished validation" />
+    <MESSAGE value="Squashed commit of the following:&#10;&#10;commit c703d1b127359b59079511afd242d74cc14d7fb7&#10;Merge: 197368d 570e321&#10;Author: mmejalli &lt;mim203@pitt.edu&gt;&#10;Date:   Thu Feb 20 09:01:15 2025 -0500&#10;&#10;    Merge branch 'Mike-Branch' of https://github.com/mmejalli/ECE1774_Project2 into Mike-Branch&#10;&#10;commit 570e321d2c914954920346146fec0cfef906a549&#10;Author: mmejalli &lt;122645993+mmejalli@users.noreply.github.com&gt;&#10;Date:   Thu Feb 20 08:59:44 2025 -0500&#10;&#10;    Add files via upload&#10;&#10;commit 231d32b4c9cdb7fad32b0be44469a100e3985dfc&#10;Author: mmejalli &lt;mim203@pitt.edu&gt;&#10;Date:   Thu Feb 20 08:55:35 2025 -0500&#10;&#10;    y-bus admittance matrix-fix&#10;    Transmission Line- added name&#10;&#10;commit 83f59002471cff8713c3a328a630633173b1febb&#10;Author: mmejalli &lt;mim203@pitt.edu&gt;&#10;Date:   Thu Feb 20 08:12:02 2025 -0500&#10;&#10;    y-bus admittance matrix&#10;&#10;commit cc0319a1ac6f0c360c7e3130ec6ccab579cffd11&#10;Author: mmejalli &lt;mim203@pitt.edu&gt;&#10;Date:   Thu Feb 13 08:26:12 2025 -0500&#10;&#10;    Added Circuit Class&#10;&#10;commit 6bebcf22f19ca72e24f9d2d969a6b385ffa921a7&#10;Author: mmejalli &lt;mim203@pitt.edu&gt;&#10;Date:   Thu Feb 6 08:58:40 2025 -0500&#10;&#10;    Added Circuit Class&#10;&#10;commit 197368dc954e5e1b46141c806867ca46d21a8761&#10;Author: mmejalli &lt;122645993+mmejalli@users.noreply.github.com&gt;&#10;Date:   Thu Jan 30 09:02:26 2025 -0500&#10;&#10;    Delete .devcontainer directory" />
+    <MESSAGE value="Transmission Line edit" />
+    <MESSAGE value="Last changes on branch, merging with main" />
+    <MESSAGE value="Milestone 6 - Powerflow power injections" />
+    <MESSAGE value="Milestone 6 Mismatch implemented" />
+    <MESSAGE value="Milestone 6 Checked Off, Milestone 8 Newton Raphson first lines" />
+    <MESSAGE value="Milestone 6 &#10;Mismatch correct, Powerworld Validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Milestone 6 &#10;Mismatch correct, Powerworld Validation" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Powerflow.coverage" NAME="Powerflow Coverage Results" MODIFIED="1743684992941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Bus.coverage" NAME="Bus Coverage Results" MODIFIED="1741710398069" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Geometry.coverage" NAME="Geometry Coverage Results" MODIFIED="1738851139872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Bundle.coverage" NAME="Bundle Coverage Results" MODIFIED="1738851131279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$TransmissionLine.coverage" NAME="TransmissionLine Coverage Results" MODIFIED="1739455855716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Transformer.coverage" NAME="Transformer Coverage Results" MODIFIED="1739455225962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Validation.coverage" NAME="Validation Coverage Results" MODIFIED="1738675022818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Conductor.coverage" NAME="Conductor Coverage Results" MODIFIED="1738851102244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Circuit.coverage" NAME="Circuit Coverage Results" MODIFIED="1742473707823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Load.coverage" NAME="Load Coverage Results" MODIFIED="1742908196452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
