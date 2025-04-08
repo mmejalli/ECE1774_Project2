@@ -182,6 +182,7 @@ if __name__ == "__main__":
     rads=cmath.phase(circuit1.ybus[0,0])
     print(math.degrees(rads))
 
+    #Calc Jacobian
     J=Jacobian(circuit1)
     J.calc_jacobian()
 

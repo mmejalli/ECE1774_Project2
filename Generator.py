@@ -6,4 +6,4 @@ class Generator:
         self.voltage_setpoint = voltage_setpoint
         self.mw_setpoint = mw_setpoint
 
-        #sdgsdg
+        #sdgsdgg
