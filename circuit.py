@@ -7,6 +7,9 @@ from Transformer import Transformer
 from Bundle import Bundle
 from TransmissionLine import TransmissionLine
 from Geometry import Geometry
+from Load import Load
+from Generator import Generator
+
 import math
 import cmath
 from Jacobian import Jacobian
@@ -20,6 +23,8 @@ class Circuit:
         self.conductors={}
         self.geometry={}
         self.bundles={}
+        self.generators={}
+        self.loads={}
         self.ybus=None
 
     def add_bus(self, name:str, base_kv:float, vpu:float=1, delta:float=0, bus_type:str="PQ_Bus"):
@@ -71,6 +76,20 @@ class Circuit:
 
     def add_geometry(self, name:str, xa:float, ya:float, xb:float, yb:float, xc:float, yc:float):
         self.geometry[name]=Geometry(name,xa,ya,xb,yb,xc,yc)
+
+    def add_generator(self, name:str, voltage_setpoint:float, mw_setpoint:float, gen_bus_name:str):
+        if(self.buses[gen_bus_name].bus_type == "PV_Bus"):
+            self.generators[name] = Generator(name, voltage_setpoint, mw_setpoint)
+            self.buses[gen_bus_name].generator = self.generators[name]
+        else:
+            print("Error: ",gen_bus_name," is not a valid PV Bus")
+
+    def add_load(self, name:str, real_power:float, reactive_power:float, load_bus_name:str):
+        if(self.buses[load_bus_name].bus_type == "PQ_Bus"):
+            self.loads[name] = Load(name, real_power, reactive_power)
+            self.buses[load_bus_name].load = self.loads[name]
+        else:
+            print("Error: ",load_bus_name," is not a valid PQ Bus")
 
     def calc_y_admit(self):
         n=len(self.buses)
