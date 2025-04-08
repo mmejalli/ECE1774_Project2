@@ -7,7 +7,9 @@ from Transformer import Transformer
 from Bundle import Bundle
 from TransmissionLine import TransmissionLine
 from Geometry import Geometry
-
+import math
+import cmath
+from Jacobian import Jacobian
 
 class Circuit:
     def __init__(self, name:str):
@@ -20,7 +22,7 @@ class Circuit:
         self.bundles={}
         self.ybus=None
 
-    def add_bus(self, name:str, base_kv:float):
+    def add_bus(self, name:str, base_kv:float, vpu:float=1, delta:float=0, bus_type:str="PQ_Bus"):
 
         #Checking Dictionary for duplicate buses
         if name in self.buses:
@@ -28,7 +30,7 @@ class Circuit:
             return
 
         #Adding Bus to dictionary
-        self.buses[name]=Bus(name, base_kv)
+        self.buses[name]=Bus(name, base_kv,vpu,delta,bus_type)
 
 
     def add_transformer(self, name:str, bus1:str, bus2:str, power_rating:float, impedance_percent:float, x_over_r_ratio:float):
@@ -130,13 +132,13 @@ if __name__ == "__main__":
     circuit1=Circuit("Circuit1")
 
     #Adding buses
-    circuit1.add_bus("bus1",20    )
+    circuit1.add_bus("bus1",20,bus_type="Slack_Bus")
     circuit1.add_bus("bus2",230)
     circuit1.add_bus("bus3",230)
     circuit1.add_bus("bus4",230)
     circuit1.add_bus("bus5",230)
     circuit1.add_bus("bus6",230)
-    circuit1.add_bus("bus7",18)
+    circuit1.add_bus("bus7",18,bus_type="PV_Bus")
 
     #Transmission Line sub-classes
     conductor1=Conductor("Partridge",0.642,0.0217,0.385,460)
@@ -157,7 +159,12 @@ if __name__ == "__main__":
 
     circuit1.calc_y_admit()
 
+    print("\n",abs(circuit1.ybus[0,0]))
+    rads=cmath.phase(circuit1.ybus[0,0])
+    print(math.degrees(rads))
 
+    J=Jacobian(circuit1)
+    J.calc_jacobian()
 
 
 
