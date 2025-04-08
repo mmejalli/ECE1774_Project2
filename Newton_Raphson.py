@@ -15,22 +15,39 @@ class Newton_Raphson:
         self.max_iter = max_iter
         self.buses = circuit.buses
         self.circuit.calc_y_admit()
-        self.ybus = circuit.ybus
         self.powerflow = Powerflow(circuit)
         self.powerflow.flat_start()
-        p_inj,q_inj =  self.powerflow.calc_PQ()
-        self.powerflow.calc_mismatch(q_inj, p_inj)
+        self.p_inj,self.q_inj =  self.powerflow.calc_PQ()
 
+    #Function to solve Newton Raphson Method
     def solve(self):
+
+        #Begin from iteration 0 with flat start mismatches
         iteration = 0
+
+        #Continue algorithm until max iterations are reached
         while iteration < self.max_iter:
-            mismatch = self.calculate_power_mismatch()
+
+            #Start with flat start mismatches, compute using p_inj and q_inj
+            mismatch = self.powerflow.calc_mismatch(self.p_inj, self.q_inj)
+
+            #if mismatches are within tolerance, algorithm stops
             if np.max(np.abs(mismatch)) < self.tol:
                 break
+
+            #Calculate Jacobian Matrix based on mismatches
             jacobian = self.compute_jacobian()
+
+            #Change in x(mismatches) solved via linear algebra
             delta_x = np.linalg.solve(jacobian, mismatch)
+
+            #Update voltage values
             self.update_voltages(delta_x)
+
+            #Move on to next iteration
             iteration += 1
+
+        #Once exiting loop, check if max iterations was reached
         if iteration == self.max_iter:
             print("Warning: Newton-Raphson method did not converge")
 
