@@ -47,6 +47,7 @@ class Newton_Raphson:
 
             #Change in x(mismatches) solved via linear algebra
             delta_x = np.linalg.solve(jacobian_matrix, mismatch)
+            print(self.format_delta_x(delta_x))
 
             #Update voltage values
             self.update_voltages(delta_x)
@@ -55,9 +56,9 @@ class Newton_Raphson:
             iteration += 1
 
             mismatch_df = self.format_mismatch_dataframe(mismatch)
-            print(mismatch_df)
+            #print(mismatch_df)
 
-            print("\n", iteration)
+            #print("\n", iteration)
 
         #Once exiting loop, check if max iterations was reached
         if iteration == self.max_iter:
@@ -98,3 +99,19 @@ class Newton_Raphson:
         # Create DataFrame
         mismatch_df = pd.DataFrame(mismatch_vector.reshape(-1, 1), index=labels, columns=["Mismatch (p.u.)"])
         return mismatch_df
+
+    def format_delta_x(self, delta_x):
+        labels = []
+
+        # Count buses by type
+        for bus in self.circuit.buses.values():
+            if bus.bus_type != "Slack_Bus":
+                labels.append(f"Δδ_{bus.name}")
+        for bus in self.circuit.buses.values():
+            if bus.bus_type == "PQ_Bus":
+                labels.append(f"ΔV_{bus.name}")
+
+        delta_df = pd.DataFrame(delta_x, index=labels, columns=["delta_x"])
+
+        pd.set_option('display.float_format', lambda x: f'{x:.6f}')
+        return delta_df
