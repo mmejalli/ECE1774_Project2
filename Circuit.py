@@ -138,7 +138,7 @@ class Circuit:
         pd.set_option('display.width', 1000)  # Increase the display width
         pd.set_option('display.float_format', lambda x: f'{x.real:.5f}{x.imag:+.5f}j')
         # Print the DataFrame
-        print(y_admit_df)
+        #print(y_admit_df)
 
         self.ybus=y_admit
 

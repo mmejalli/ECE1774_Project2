@@ -1,6 +1,7 @@
 from Powerflow import Powerflow
 from Settings import Settings
 from Circuit import Circuit
+from Jacobian import Jacobian
 
 import numpy as np
 import pandas as pd
@@ -28,6 +29,8 @@ class Newton_Raphson:
         #Continue algorithm until max iterations are reached
         while iteration < self.max_iter:
 
+            self.p_inj, self.q_inj = self.powerflow.calc_PQ()
+
             #Start with flat start mismatches, compute using p_inj and q_inj
             mismatch = self.powerflow.calc_mismatch(self.p_inj, self.q_inj)
 
@@ -36,10 +39,14 @@ class Newton_Raphson:
                 break
 
             #Calculate Jacobian Matrix based on mismatches
-            jacobian = self.compute_jacobian()
+            Jacobian_obj = Jacobian(self.circuit)
+            jacobian_matrix = Jacobian_obj.calc_jacobian()
+
+            #print("Jacobian matrix\n")
+            #print(jacobian_matrix)
 
             #Change in x(mismatches) solved via linear algebra
-            delta_x = np.linalg.solve(jacobian, mismatch)
+            delta_x = np.linalg.solve(jacobian_matrix, mismatch)
 
             #Update voltage values
             self.update_voltages(delta_x)
@@ -47,10 +54,47 @@ class Newton_Raphson:
             #Move on to next iteration
             iteration += 1
 
+            mismatch_df = self.format_mismatch_dataframe(mismatch)
+            print(mismatch_df)
+
+            print("\n", iteration)
+
         #Once exiting loop, check if max iterations was reached
         if iteration == self.max_iter:
             print("Warning: Newton-Raphson method did not converge")
 
+
     def update_voltages(self, delta_x):
-        self.angles[:-1] += delta_x[:len(self.angles) - 1]
-        self.voltages[self.pq_buses] += delta_x[len(self.angles) - 1:]
+        bus_names = list(self.circuit.buses.keys())
+        # Step 1: Get non-slack buses (angles to update)
+        non_slack_buses = [bus for bus in self.circuit.buses.values() if bus.bus_type != "Slack_Bus"]
+        # Step 2: Get PQ buses (magnitudes to update)
+        pq_buses = [bus for bus in self.circuit.buses.values() if bus.bus_type == "PQ_Bus"]
+
+        # Step 3: Update voltage angles
+        for i, bus in enumerate(non_slack_buses):
+            bus.vpu += delta_x[i]  # radians
+
+        # Step 4: Update voltage magnitudes (only PQ buses)
+        for j, bus in enumerate(pq_buses):
+            bus.delta += delta_x[len(non_slack_buses) + j]
+
+    def format_mismatch_dataframe(self, mismatch_vector):
+        # Get bus references
+        non_slack_buses = [bus for bus in self.circuit.buses.values() if bus.bus_type != "Slack_Bus"]
+        pq_buses = [bus for bus in self.circuit.buses.values() if bus.bus_type == "PQ_Bus"]
+
+        # Build row labels
+        labels = []
+
+        # ΔP rows
+        for bus in non_slack_buses:
+            labels.append(f"ΔP_{bus.name}")
+
+        # ΔQ rows
+        for bus in pq_buses:
+            labels.append(f"ΔQ_{bus.name}")
+
+        # Create DataFrame
+        mismatch_df = pd.DataFrame(mismatch_vector.reshape(-1, 1), index=labels, columns=["Mismatch (p.u.)"])
+        return mismatch_df

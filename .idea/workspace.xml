@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79ff69e3-602d-4826-9f13-b4c89006b399" name="Changes" comment="Milestone 8&#10;Newton Raphson started">
+    <list default="true" id="79ff69e3-602d-4826-9f13-b4c89006b399" name="Changes" comment="Milestone 8&#10;Refactor mismatch">
+      <change afterPath="$PROJECT_DIR$/Jacobian.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Circuit.py" beforeDir="false" afterPath="$PROJECT_DIR$/Circuit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Newton_Raphson.py" beforeDir="false" afterPath="$PROJECT_DIR$/Newton_Raphson.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Powerflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/Powerflow.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,33 +41,33 @@
     &quot;assignee&quot;: &quot;wdroper33&quot;
   }
 }</component>
-  <component name="GitHubPullRequestState"><![CDATA[{
-  "prStates": [
+  <component name="GitHubPullRequestState">{
+  &quot;prStates&quot;: [
     {
-      "id": {
-        "id": "PR_kwDONx2VEM6Rxws0",
-        "number": 5
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDONx2VEM6Rxws0&quot;,
+        &quot;number&quot;: 5
       },
-      "lastSeen": 1744115307912
+      &quot;lastSeen&quot;: 1744115307912
     }
   ]
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/mmejalli/ECE1774_Project2.git",
-    "accountId": "cb826532-7198-41e4-a880-18fcbc88bb2a"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mmejalli/ECE1774_Project2.git&quot;,
+    &quot;accountId&quot;: &quot;cb826532-7198-41e4-a880-18fcbc88bb2a&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "mmejalli",
-    "repository": "ECE1774_Project2"
+    &quot;owner&quot;: &quot;mmejalli&quot;,
+    &quot;repository&quot;: &quot;ECE1774_Project2&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -80,14 +84,16 @@
     "Python.Conductor.executor": "Run",
     "Python.Geometry.executor": "Run",
     "Python.Load.executor": "Run",
+    "Python.Main.executor": "Run",
+    "Python.Newton_Raphson.executor": "Debug",
     "Python.Powerflow.executor": "Run",
     "Python.Transformer.executor": "Run",
     "Python.TransmissionLine.executor": "Run",
     "Python.Validation.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#5 on WR__Branch",
-    "last_opened_file_path": "C:/Users/wdrop/OneDrive - University of Pittsburgh/25 Spring School/Advanced Power Systems/ECE1774_Project2/Load.py",
+    "git-widget-placeholder": "WR__Branch",
+    "last_opened_file_path": "C:/Users/wdrop/OneDrive - University of Pittsburgh/25 Spring School/Advanced Power Systems/ECE1774_Project2",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -122,7 +128,8 @@
       <workItem from="1740661657547" duration="4066000" />
       <workItem from="1741695451116" duration="15760000" />
       <workItem from="1742472721835" duration="15440000" />
-      <workItem from="1743509629978" duration="9767000" />
+      <workItem from="1743509629978" duration="11887000" />
+      <workItem from="1744719153584" duration="2945000" />
     </task>
     <task id="LOCAL-00001" summary="Validation File.&#10;Need to finish:&#10;T-line methods and validation">
       <option name="closed" value="true" />
@@ -276,7 +283,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744114232205</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Milestone 8&#10;Refactor mismatch">
+      <option name="closed" value="true" />
+      <created>1744118320840</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1744118320840</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,18 +336,21 @@
     <MESSAGE value="Milestone 6 Checked Off, Milestone 8 Newton Raphson first lines" />
     <MESSAGE value="Milestone 6 &#10;Mismatch correct, Powerworld Validation" />
     <MESSAGE value="Milestone 8&#10;Newton Raphson started" />
-    <option name="LAST_COMMIT_MESSAGE" value="Milestone 8&#10;Newton Raphson started" />
+    <MESSAGE value="Milestone 8&#10;Refactor mismatch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Milestone 8&#10;Refactor mismatch" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ECE1774_Project2$Powerflow.coverage" NAME="Powerflow Coverage Results" MODIFIED="1744117949393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Bus.coverage" NAME="Bus Coverage Results" MODIFIED="1741710398069" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Newton_Raphson.coverage" NAME="Newton_Raphson Coverage Results" MODIFIED="1744721692412" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Geometry.coverage" NAME="Geometry Coverage Results" MODIFIED="1738851139872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ECE1774_Project2$Bundle.coverage" NAME="Bundle Coverage Results" MODIFIED="1738851131279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$TransmissionLine.coverage" NAME="TransmissionLine Coverage Results" MODIFIED="1739455855716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Transformer.coverage" NAME="Transformer Coverage Results" MODIFIED="1739455225962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ECE1774_Project2$Validation.coverage" NAME="Validation Coverage Results" MODIFIED="1738675022818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Main.coverage" NAME="Main Coverage Results" MODIFIED="1744722001030" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Conductor.coverage" NAME="Conductor Coverage Results" MODIFIED="1738851102244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Circuit.coverage" NAME="Circuit Coverage Results" MODIFIED="1742473707823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Load.coverage" NAME="Load Coverage Results" MODIFIED="1742908196452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Powerflow.coverage" NAME="Powerflow Coverage Results" MODIFIED="1744719315858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Bundle.coverage" NAME="Bundle Coverage Results" MODIFIED="1738851131279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Validation.coverage" NAME="Validation Coverage Results" MODIFIED="1738675022818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

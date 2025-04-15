@@ -64,8 +64,8 @@ class Powerflow:
             p_calc[k] = p_k
             q_calc[k] = q_k
 
-        print(p_calc)
-        print(q_calc)
+        #print(p_calc)
+        #print(q_calc)
 
         # Print real values only
         results_df = pd.DataFrame(
@@ -73,7 +73,7 @@ class Powerflow:
             index=["P (MW)", "Q (MVAR)"],  # Row labels
             columns=bus_names,  # Column labels are bus names
         )
-        print(results_df)
+        #print(results_df)
 
         return p_calc, q_calc
 
@@ -115,21 +115,21 @@ class Powerflow:
             index=["P Mismatch (MW)", "Q Mismatch (MVAR)"],
             columns=bus_names,
         )
-        print(mismatch_df,"\n")
+        #print(mismatch_df,"\n")
 
 
 
-        print ("Non-slack indeces:", non_slack_indeces, "\n")
-        print ("PQ indeces:", pq_indeces, "\n")
+        #print ("Non-slack indeces:", non_slack_indeces, "\n")
+        #print ("PQ indeces:", pq_indeces, "\n")
 
         p_mismatch = p_mismatch[non_slack_indeces]
         q_mismatch = q_mismatch[pq_indeces]
 
         mismatch = np.concatenate((p_mismatch.reshape(-1, 1), q_mismatch.reshape(-1, 1)), axis=0)
 
-        print(mismatch,"\n")
+        #print(mismatch,"\n")
 
-        return p_mismatch, q_mismatch
+        return mismatch
 
 
 
