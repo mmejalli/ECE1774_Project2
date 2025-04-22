@@ -81,7 +81,7 @@
     "Python.Geometry.executor": "Run",
     "Python.Load.executor": "Run",
     "Python.Main.executor": "Run",
-    "Python.Newton_Raphson.executor": "Debug",
+    "Python.Newton_Raphson.executor": "Run",
     "Python.Powerflow.executor": "Run",
     "Python.Transformer.executor": "Run",
     "Python.TransmissionLine.executor": "Run",
@@ -125,7 +125,8 @@
       <workItem from="1741695451116" duration="15760000" />
       <workItem from="1742472721835" duration="15440000" />
       <workItem from="1743509629978" duration="11887000" />
-      <workItem from="1744719153584" duration="3591000" />
+      <workItem from="1744719153584" duration="4196000" />
+      <workItem from="1745325009185" duration="1927000" />
     </task>
     <task id="LOCAL-00001" summary="Validation File.&#10;Need to finish:&#10;T-line methods and validation">
       <option name="closed" value="true" />
@@ -295,7 +296,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744722384460</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Milestone 8&#10;Newton Raphson Progress, not converging">
+      <option name="closed" value="true" />
+      <created>1744738614621</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1744738614622</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -346,11 +355,11 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Bus.coverage" NAME="Bus Coverage Results" MODIFIED="1741710398069" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ECE1774_Project2$Newton_Raphson.coverage" NAME="Newton_Raphson Coverage Results" MODIFIED="1744721692412" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Newton_Raphson.coverage" NAME="Newton_Raphson Coverage Results" MODIFIED="1745325022012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Geometry.coverage" NAME="Geometry Coverage Results" MODIFIED="1738851139872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$TransmissionLine.coverage" NAME="TransmissionLine Coverage Results" MODIFIED="1739455855716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Transformer.coverage" NAME="Transformer Coverage Results" MODIFIED="1739455225962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ECE1774_Project2$Main.coverage" NAME="Main Coverage Results" MODIFIED="1744722654333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Main.coverage" NAME="Main Coverage Results" MODIFIED="1745326766793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Conductor.coverage" NAME="Conductor Coverage Results" MODIFIED="1738851102244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Circuit.coverage" NAME="Circuit Coverage Results" MODIFIED="1742473707823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Load.coverage" NAME="Load Coverage Results" MODIFIED="1742908196452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

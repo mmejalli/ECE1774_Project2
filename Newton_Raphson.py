@@ -74,11 +74,11 @@ class Newton_Raphson:
 
         # Step 3: Update voltage angles
         for i, bus in enumerate(non_slack_buses):
-            bus.vpu += delta_x[i]  # radians
+            bus.delta += delta_x[i]  # radians
 
         # Step 4: Update voltage magnitudes (only PQ buses)
         for j, bus in enumerate(pq_buses):
-            bus.delta += delta_x[len(non_slack_buses) + j]
+            bus.vpu += delta_x[len(non_slack_buses) + j]
 
     def format_mismatch_dataframe(self, mismatch_vector):
         # Get bus references
