@@ -52,5 +52,5 @@ circuit1.add_load("Load5", 0, 0, "bus6")
 circuit1.calc_y_admit()
 
 ## Check Newton Raphson
-solver = Newton_Raphson(circuit1, 0.001, 50)
+solver = Newton_Raphson(circuit1, 0.001, 5)
 solver.solve()

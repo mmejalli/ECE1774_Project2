@@ -73,7 +73,9 @@ class Powerflow:
             index=["P (MW)", "Q (MVAR)"],  # Row labels
             columns=bus_names,  # Column labels are bus names
         )
-        #print(results_df)
+        print(results_df)
+
+
 
         return p_calc, q_calc
 

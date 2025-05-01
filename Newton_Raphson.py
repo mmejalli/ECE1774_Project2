@@ -1,7 +1,7 @@
 from Powerflow import Powerflow
 from Settings import Settings
 from Circuit import Circuit
-from Jacobian import Jacobian
+from JacobianTwo import Jacobian
 
 import numpy as np
 import pandas as pd
@@ -29,10 +29,16 @@ class Newton_Raphson:
         #Continue algorithm until max iterations are reached
         while iteration < self.max_iter:
 
+            print("Running Powerflow Mismatch from NR\n")
             self.p_inj, self.q_inj = self.powerflow.calc_PQ()
 
             #Start with flat start mismatches, compute using p_inj and q_inj
             mismatch = self.powerflow.calc_mismatch(self.p_inj, self.q_inj)
+
+            #Debug -- Print Mismatches
+            print("Mismatch\n", mismatch)
+
+
 
             #if mismatches are within tolerance, algorithm stops
             if np.max(np.abs(mismatch)) < self.tol:
