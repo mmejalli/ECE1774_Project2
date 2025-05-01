@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79ff69e3-602d-4826-9f13-b4c89006b399" name="Changes" comment="Milestone 8&#10;Newton Raphson Progress, still not converging">
+    <list default="true" id="79ff69e3-602d-4826-9f13-b4c89006b399" name="Changes" comment="Milestone 8&#10;Debugging, Changed Jacobian indeces">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jacobian.py" beforeDir="false" afterPath="$PROJECT_DIR$/Jacobian.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Newton_Raphson.py" beforeDir="false" afterPath="$PROJECT_DIR$/Newton_Raphson.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Powerflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/Powerflow.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +129,7 @@
       <workItem from="1743509629978" duration="11887000" />
       <workItem from="1744719153584" duration="4196000" />
       <workItem from="1745325009185" duration="2723000" />
-      <workItem from="1746032571872" duration="4564000" />
+      <workItem from="1746032571872" duration="6831000" />
     </task>
     <task id="LOCAL-00001" summary="Validation File.&#10;Need to finish:&#10;T-line methods and validation">
       <option name="closed" value="true" />
@@ -317,7 +315,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745327374578</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Milestone 8&#10;Debugging, Changed Jacobian indeces">
+      <option name="closed" value="true" />
+      <created>1746067937376</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1746067937376</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -365,7 +371,8 @@
     <MESSAGE value="Milestone 8&#10;Refactor mismatch" />
     <MESSAGE value="Milestone 8&#10;Newton Raphson Progress, not converging" />
     <MESSAGE value="Milestone 8&#10;Newton Raphson Progress, still not converging" />
-    <option name="LAST_COMMIT_MESSAGE" value="Milestone 8&#10;Newton Raphson Progress, still not converging" />
+    <MESSAGE value="Milestone 8&#10;Debugging, Changed Jacobian indeces" />
+    <option name="LAST_COMMIT_MESSAGE" value="Milestone 8&#10;Debugging, Changed Jacobian indeces" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Bus.coverage" NAME="Bus Coverage Results" MODIFIED="1741710398069" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -373,7 +380,7 @@
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Geometry.coverage" NAME="Geometry Coverage Results" MODIFIED="1738851139872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$TransmissionLine.coverage" NAME="TransmissionLine Coverage Results" MODIFIED="1739455855716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Transformer.coverage" NAME="Transformer Coverage Results" MODIFIED="1739455225962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ECE1774_Project2$Main.coverage" NAME="Main Coverage Results" MODIFIED="1746067260551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECE1774_Project2$Main.coverage" NAME="Main Coverage Results" MODIFIED="1746119563629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Conductor.coverage" NAME="Conductor Coverage Results" MODIFIED="1738851102244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Circuit.coverage" NAME="Circuit Coverage Results" MODIFIED="1742473707823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECE1774_Project2$Load.coverage" NAME="Load Coverage Results" MODIFIED="1742908196452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

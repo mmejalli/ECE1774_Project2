@@ -55,6 +55,8 @@ class Newton_Raphson:
             delta_x = np.linalg.solve(jacobian_matrix, mismatch)
             print(self.format_delta_x(delta_x))
 
+            print("Change in voltage angles and magnitudes\n", delta_x)
+
             #Update voltage values
             self.update_voltages(delta_x)
 
