@@ -39,7 +39,7 @@ class Jacobian:
         pd.set_option('display.width', 1000)  # Increase the display width
         pd.set_option('display.float_format', lambda x: f'{x:.5f}')
 
-        print(jacobain_pd)
+        #print(jacobain_pd)
 
         jacobain_Trimmed_pd = pd.DataFrame(jacobian_trimmed)
 
