@@ -2,7 +2,7 @@
 # Includes power mismatch and power injection equations
 from contextlib import nullcontext
 
-from Circuit import Circuit
+from circuit import Circuit
 from Bus import Bus
 from Geometry import Geometry
 from Conductor import Conductor
@@ -151,8 +151,8 @@ if __name__ == "__main__":
     circuit1.add_transformer("Tx2", "bus6", "bus7", 200, 10.5, 12)
 
     # Adding Generators
-    circuit1.add_generator("Gen1", 1.0, 100, "bus1")
-    circuit1.add_generator("Gen2", 1.0, 200.0, "bus7")
+    circuit1.add_generator("Gen1", 1.0, 100, "bus1",.12)
+    circuit1.add_generator("Gen2", 1.0, 200.0, "bus7",.12)
 
     # Adding Loads
     circuit1.add_load("Load1", 0, 0, "bus2")

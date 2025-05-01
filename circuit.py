@@ -77,12 +77,13 @@ class Circuit:
     def add_geometry(self, name:str, xa:float, ya:float, xb:float, yb:float, xc:float, yc:float):
         self.geometry[name]=Geometry(name,xa,ya,xb,yb,xc,yc)
 
-    def add_generator(self, name:str, voltage_setpoint:float, mw_setpoint:float, gen_bus_name:str):
-        if(self.buses[gen_bus_name].bus_type == "PV_Bus"):
+    def add_generator(self, name:str, voltage_setpoint:float, mw_setpoint:float, gen_bus_name:str, sub_trans:float):
+        if(self.buses[gen_bus_name].bus_type == "PV_Bus" or self.buses[gen_bus_name].bus_type == "Slack_Bus"):
             self.generators[name] = Generator(name, voltage_setpoint, mw_setpoint)
+            self.generators[name].calc_Impedance(sub_trans)
             self.buses[gen_bus_name].generator = self.generators[name]
         else:
-            print("Error: ",gen_bus_name," is not a valid PV Bus")
+            print("Error: ",gen_bus_name," is not a valid Bus to add generator")
 
     def add_load(self, name:str, real_power:float, reactive_power:float, load_bus_name:str):
         if(self.buses[load_bus_name].bus_type == "PQ_Bus"):
@@ -133,18 +134,21 @@ class Circuit:
             y_admit[j, i] = y_admit[j,i] + temp[1, 0]
             y_admit[j, j] = y_admit[j,j] + temp[1, 1]
 
+
+
+        self.ybus=y_admit
+
+    def print_ybus(self):
         bus_names = list(self.buses.keys())
-        y_admit_df = pd.DataFrame(y_admit, index=bus_names, columns=bus_names)
+        y_admit_df = pd.DataFrame(self.ybus, index=bus_names, columns=bus_names)
 
         pd.set_option('display.max_rows', None)  # Show all rows
         pd.set_option('display.max_columns', None)  # Show all columns
         pd.set_option('display.width', 1000)  # Increase the display width
         pd.set_option('display.float_format', lambda x: f'{x.real:.5f}{x.imag:+.5f}j')
         # Print the DataFrame
+        print("\n\ny_admittance Matrix")
         print(y_admit_df)
-
-        self.ybus=y_admit
-
 
 if __name__ == "__main__":
 
@@ -186,8 +190,10 @@ if __name__ == "__main__":
     J=Jacobian(circuit1)
     J.calc_jacobian()
 
-
-
+    fault1 = Fault(circuit1, "bus7")
+    fault1.calc_fault()
+    fault1.print_zbus()
+    fault1.print_fault_voltages()
 
 
     ''' 

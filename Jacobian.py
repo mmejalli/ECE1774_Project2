@@ -50,6 +50,8 @@ class Jacobian:
 
         print(jacobain_Trimmed_pd)
 
+        return jacobian_trimmed
+
 
     def calc_J1(self):
 
@@ -69,7 +71,7 @@ class Jacobian:
                         busn=self.circuit.buses[p]
                         i=busn.index
                         if busn.index!=busk.index:
-                            J1[j,j]+= abs(self.circuit.ybus[i,j]) * busn.vpu * math.sin(busk.delta - busn.delta - np.angle(self.circuit.ybus[j,i]))  #Check Radians and degrees for cmath
+                            J1[j,j]+= abs(self.circuit.ybus[i,j]) * busn.vpu * math.sin(busk.delta - busn.delta - np.angle(self.circuit.ybus[i,j]))  #Check Radians and degrees for cmath
                     J1[j,j]*=(-busk.vpu)
                 else:
                     J1[i,j]=busk.vpu * abs(self.circuit.ybus[i,j]) * busn.vpu *math.sin(busk.delta - busn.delta - np.angle(self.circuit.ybus[i,j]))
@@ -92,7 +94,7 @@ class Jacobian:
                     for p in (self.circuit.buses.keys()):
                         busn=self.circuit.buses[p]
                         i=busn.index
-                        J2[j,j]+= abs(self.circuit.ybus[i,j]) * busn.vpu * math.cos(busk.delta - busn.delta - np.angle(self.circuit.ybus[j,i]))
+                        J2[j,j]+= abs(self.circuit.ybus[i,j]) * busn.vpu * math.cos(busk.delta - busn.delta - np.angle(self.circuit.ybus[i,j]))
                     J2[j,j]*=(busk.vpu*abs(self.circuit.ybus[j,j])*math.cos(np.angle(self.circuit.ybus[j,j])))
                 else:
                     J2[i,j]=busk.vpu * abs(self.circuit.ybus[i,j]) * math.cos(busk.delta - busn.delta - np.angle(self.circuit.ybus[i,j]))
@@ -116,7 +118,7 @@ class Jacobian:
                         busn=self.circuit.buses[p]
                         i=busn.index
                         if busn.index!=busk.index:
-                            J3[j,j]+= abs(self.circuit.ybus[i,j]) * busn.vpu * math.cos(busk.delta - busn.delta - np.angle(self.circuit.ybus[j,i]))
+                            J3[j,j]+= abs(self.circuit.ybus[i,j]) * busn.vpu * math.cos(busk.delta - busn.delta - np.angle(self.circuit.ybus[i,j]))
                     J3[j,j]*=(busk.vpu)
                 else:
                     J3[i,j]=(-1)*busk.vpu * abs(self.circuit.ybus[i,j]) * busn.vpu *math.cos(busk.delta - busn.delta - np.angle(self.circuit.ybus[i,j]))
@@ -139,7 +141,7 @@ class Jacobian:
                     for p in (self.circuit.buses.keys()):
                         busn=self.circuit.buses[p]
                         i=busn.index
-                        J4[j,j]+= abs(self.circuit.ybus[i,j]) * busn.vpu * math.sin(busk.delta - busn.delta - np.angle(self.circuit.ybus[j,i]))
+                        J4[j,j]+= abs(self.circuit.ybus[i,j]) * busn.vpu * math.sin(busk.delta - busn.delta - np.angle(self.circuit.ybus[i,j]))
                     J4[j,j]*=(-busk.vpu* abs(self.circuit.ybus[j,j]) *math.sin(np.angle(self.circuit.ybus[j,j])))
                 else:
                     J4[i,j]=busk.vpu * abs(self.circuit.ybus[i,j]) *math.sin(busk.delta - busn.delta - np.angle(self.circuit.ybus[i,j]))
