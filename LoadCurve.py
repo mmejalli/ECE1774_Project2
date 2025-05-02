@@ -6,6 +6,8 @@ from Circuit import Circuit
 from Load import Load
 from Bus import Bus
 
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
 
 class LoadCurve:
     """
@@ -101,7 +103,7 @@ class LoadCurve:
                 scaled_power = original_power * multiplier
                 #row[f"Load {i + 1} P"] = scaled_power.real
                 #row[f"Load {i + 1} Q"] = scaled_power.imag
-                row[f"Load {i + 1} S"] = abs(scaled_power)
+                row[f"{self.load_columns[i]} S (MVA)"] = abs(scaled_power)
             self.newLoadData.append(row)
 
         return
@@ -129,7 +131,7 @@ class LoadCurve:
         num_loads = len(self.usableLoads)
 
         for i in range(num_loads):
-            s_col = f"Load {i + 1} S"
+            s_col = f"{self.load_columns[i]} S (MVA)"
             if s_col in df.columns:
                 y_values = df[s_col].values
                 # Perform interpolation (use cubic or linear interpolation)
