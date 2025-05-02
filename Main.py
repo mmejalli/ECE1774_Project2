@@ -58,7 +58,7 @@ User would add the following lines in main after creating an populating a Circui
 
 '''
 
-load_curve_1 = LoadCurve(circuit1, r"C:\Users\wdrop\OneDrive\Documents\Proj_3_Load_Curves.csv")
+load_curve_1 = LoadCurve(circuit1, r"C:\Users\wdrop\OneDrive - University of Pittsburgh\25 Spring School\Advanced Power Systems\ECE1774_Project2\WR_Proj_3_LoadCurves.csv")
 load_curve_1.print_load_dataframe()
 load_curve_1.plot_complex_power_vs_time()
 
