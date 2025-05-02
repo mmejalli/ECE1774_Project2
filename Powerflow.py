@@ -2,7 +2,7 @@
 # Includes power mismatch and power injection equations
 from contextlib import nullcontext
 
-from circuit import Circuit
+from Circuit import Circuit
 from Bus import Bus
 from Geometry import Geometry
 from Conductor import Conductor

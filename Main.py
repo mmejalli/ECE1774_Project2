@@ -8,6 +8,7 @@ from Conductor import Conductor
 from Bundle import Bundle
 from Settings import Settings
 from Newton_Raphson import Newton_Raphson
+from LoadCurve import LoadCurve
 
 
 circuit1 = Circuit("Circuit1")
@@ -40,7 +41,7 @@ circuit1.add_transformer("Tx2", "bus6", "bus7", 200, 10.5, 12)
 
 # Adding Generators
 #circuit1.add_generator("Gen1", 1.0, 100, "bus1")
-circuit1.add_generator("Gen2", 1.0, 200.0, "bus7")
+circuit1.add_generator("Gen2", 1.0, 200.0, "bus7", 0)
 
 # Adding Loads
 circuit1.add_load("Load1", 0, 0, "bus2")
@@ -51,6 +52,18 @@ circuit1.add_load("Load5", 0, 0, "bus6")
 
 circuit1.calc_y_admit()
 
+
+'''
+User would add the following lines in main after creating an populating a Circuit object:
+
+'''
+
+load_curve_1 = LoadCurve(circuit1, r"C:\Users\wdrop\OneDrive\Documents\Proj_3_Load_Curves.csv")
+load_curve_1.print_load_dataframe()
+load_curve_1.plot_complex_power_vs_time()
+
+'''
 ## Check Newton Raphson
 solver = Newton_Raphson(circuit1, 0.001, 5)
 solver.solve()
+'''

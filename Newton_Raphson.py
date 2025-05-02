@@ -1,7 +1,7 @@
 from Powerflow import Powerflow
 from Settings import Settings
 from Circuit import Circuit
-from JacobianTwo import Jacobian
+from Jacobian import Jacobian
 
 import numpy as np
 import pandas as pd

@@ -1,5 +1,5 @@
 import numpy as np
-from circuit import Circuit
+from Circuit import Circuit
 from Bus import Bus
 from Conductor import Conductor
 from Bundle import Bundle
