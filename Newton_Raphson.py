@@ -1,7 +1,7 @@
 from Powerflow import Powerflow
 from Settings import Settings
 from Circuit import Circuit
-from JacobianTwo import Jacobian
+from Jacobian import Jacobian
 
 import numpy as np
 import pandas as pd
@@ -36,7 +36,7 @@ class Newton_Raphson:
             mismatch = self.powerflow.calc_mismatch(self.p_inj, self.q_inj)
 
             #Debug -- Print Mismatches
-            print("Mismatch\n", mismatch)
+            #print("Mismatch\n", mismatch)
 
 
 
@@ -71,6 +71,24 @@ class Newton_Raphson:
         #Once exiting loop, check if max iterations was reached
         if iteration == self.max_iter:
             print("Warning: Newton-Raphson method did not converge")
+        else:
+            print("Newton-Raphson method converged in {iteration} iterations\n")
+
+            # Create voltage magnitude and angle lists
+            bus_names = list(self.circuit.buses.keys())
+            v_mags = [np.round(self.circuit.buses[name].vpu, 4) for name in bus_names]
+            v_angles = [np.round(self.circuit.buses[name].delta, 4) for name in bus_names]  # assumed to be in degrees
+
+            # Create DataFrame
+            voltage_df = pd.DataFrame(
+                [v_mags, v_angles],
+                index=["|V| (p.u.)", "Angle (°)"],
+                columns=bus_names
+            )
+
+            print("\nFinal Bus Voltages:")
+            print(voltage_df)
+
 
 
     def update_voltages(self, delta_x):

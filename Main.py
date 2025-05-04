@@ -39,7 +39,7 @@ circuit1.add_transformer("Tx1", "bus1", "bus2", 125, 8.5, 10)
 circuit1.add_transformer("Tx2", "bus6", "bus7", 200, 10.5, 12)
 
 # Adding Generators
-#circuit1.add_generator("Gen1", 1.0, 100, "bus1")
+circuit1.add_generator("Gen1", 1.0, 100, "bus1")
 circuit1.add_generator("Gen2", 1.0, 200.0, "bus7")
 
 # Adding Loads
@@ -52,5 +52,6 @@ circuit1.add_load("Load5", 0, 0, "bus6")
 circuit1.calc_y_admit()
 
 ## Check Newton Raphson
-solver = Newton_Raphson(circuit1, 0.001, 5)
+print("running Newton Raphson")
+solver = Newton_Raphson(circuit1, 0.1, 5)
 solver.solve()

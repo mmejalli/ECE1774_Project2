@@ -22,6 +22,14 @@ class Powerflow:
         # Should start from flat start: all bus voltages are 1.0 and 0 angle by default
         self.flat_start()
 
+        '''
+        v_bus = [1,0.9369,0.9205,0.9298,0.9267,0.9397,0.9999]
+        del_bus = [0, -4.44, -5.46, -4.7, -4.83, -3.95, 2.15]
+
+        # For debugging, use input bus voltage function
+        self.input_bus_voltages(v_bus,del_bus)
+        '''
+
         #Calculate Power injection for buses
         p_injected,q_injected = self.calc_PQ()
 
@@ -30,10 +38,42 @@ class Powerflow:
 
 
 
+
     def flat_start(self):
         for bus in self.circuit.buses.values():
             bus.delta = 0
             bus.vpu = 1.0
+
+    def input_bus_voltages(self, vpu_array, delta_array):
+        """
+        Assigns bus voltages and angles to the circuit buses.
+
+        Parameters:
+        vpu_array (np.ndarray): Array of per-unit voltage magnitudes.
+        delta_array (np.ndarray): Array of voltage angles in radians.
+        """
+
+
+
+        assert len(vpu_array) == len(self.circuit.buses), "Voltage array length mismatch"
+        assert len(delta_array) == len(self.circuit.buses), "Angle array length mismatch"
+
+        bus_names = list(self.circuit.buses.keys())
+
+        for idx, name in enumerate(bus_names):
+            bus = self.circuit.buses[name]
+            bus.vpu = vpu_array[idx]
+            bus.delta = delta_array[idx]
+
+        # Create and print verification DataFrame
+        voltage_df = pd.DataFrame({
+            "Bus": bus_names,
+            "Voltage (pu)": np.round(vpu_array, 4),
+            "Angle (rad)": np.round(delta_array, 4)
+        }).set_index("Bus")
+
+        print("\nUpdated Bus Voltages and Angles:")
+        print(voltage_df)
 
     def calc_PQ(self):
         # Initialize real and reactive power array and running totals
@@ -50,15 +90,19 @@ class Powerflow:
             bus_k = self.circuit.buses[bus_names[k]]
             p_k = 0  # Reset for each bus k
             q_k = 0  # Reset for each bus k
+            delta_k_rad = np.radians(bus_k.delta)
 
             for m in range(0, len(self.circuit.buses)):
                 bus_m = self.circuit.buses[bus_names[m]]
                 y_bus_km = self.circuit.ybus[k][m]
                 y_bus_theta_km = np.angle(y_bus_km)
 
+                delta_m_rad = np.radians(bus_m.delta)
+                angle_diff = delta_k_rad - delta_m_rad - y_bus_theta_km
+
                 #Calc real and reactive power for current k and m indexes
-                p_k += bus_k.vpu * bus_m.vpu * abs(y_bus_km)*np.cos(bus_k.delta - bus_m.delta - y_bus_theta_km)
-                q_k += bus_k.vpu * bus_m.vpu * abs(y_bus_km)*np.sin(bus_k.delta - bus_m.delta - y_bus_theta_km)
+                p_k += bus_k.vpu * bus_m.vpu * abs(y_bus_km)*np.cos(angle_diff)
+                q_k += bus_k.vpu * bus_m.vpu * abs(y_bus_km)*np.sin(angle_diff)
 
             #store values for current iteration
             p_calc[k] = p_k
@@ -129,7 +173,8 @@ class Powerflow:
 
         mismatch = np.concatenate((p_mismatch.reshape(-1, 1), q_mismatch.reshape(-1, 1)), axis=0)
 
-        #print(mismatch,"\n")
+        print("Mismatch\n")
+        print(mismatch,"\n")
 
         return mismatch
 

@@ -75,7 +75,7 @@ class Circuit:
         self.geometry[name]=Geometry(name,xa,ya,xb,yb,xc,yc)
 
     def add_generator(self, name:str, voltage_setpoint:float, mw_setpoint:float, gen_bus_name:str):
-        if(self.buses[gen_bus_name].bus_type == "PV_Bus"):
+        if((self.buses[gen_bus_name].bus_type == "PV_Bus" )| (self.buses[gen_bus_name].bus_type == "Slack_Bus")):
             self.generators[name] = Generator(name, voltage_setpoint, mw_setpoint)
             self.buses[gen_bus_name].generator = self.generators[name]
         else:
